@@ -7,10 +7,27 @@ class App{
     private static $route = [];
 
     public function __construct(){
+        //Landing page
         $this->route('/', 'Admin@index');
+
+        //Untuk tampilan nasabah
+        $this->route('/nasabah', 'Nasabah@index');
         $this->route('/nasabah/create', 'Nasabah@create');
         $this->route('/nasabah/edit/{id}', 'Nasabah@edit');
+        $this->route('/nasabah/delete/{id}', 'Nasabah@delete');
 
+        //Untuk tampilan operator
+        $this->route('/operator', 'Operator@index');
+        $this->route('/operator/create',  'Operator@create');
+        $this->route('/operator/edit/{id}', 'Operator@edit');
+        $this->route('/operator/delete/{id}', 'Operator@delete');
+
+        //Untuk tampilan admin
+        $this->route('/admin', 'Admin@index');
+        $this->route('/admin/create',  'Admin@create');
+        $this->route('/admin/edit/{id}', 'Admin@edit');
+        $this->route('/admin/delete/{id}', 'Admin@delete');
+        
 
         $this->notFound();
     }
