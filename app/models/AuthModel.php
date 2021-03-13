@@ -28,6 +28,7 @@ class AuthModel{
             }
         }else{
             setFlash('pesan', 'Username atau Password salah!', 'danger');
+            redirect('auth/login');
         }
     }
 
