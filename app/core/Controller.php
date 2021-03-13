@@ -10,6 +10,17 @@ class controller{
         require '../app/models/'.$model.'.php';
         return new $model;
     }
+
+    public function middleware($level = []){
+        if(isset($_SESSION['user'])){
+            if(!in_array($_SESSION['user']['level'], $level)){
+                $this->view('error/403');
+                exit;
+            }
+        }else{
+            header('location: '.BASE_URL.'auth/login');
+        }
+    }
     
 }
 
