@@ -12,3 +12,8 @@ function getFlash($name)
         unset($_SESSION[$name]);
     }
 }
+
+function redirect($url){
+    header('location: '.BASE_URL.$url);
+    exit;
+}
