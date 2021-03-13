@@ -12,6 +12,7 @@ class Auth extends Controller{
 
     public function register()
     {
+        $this->middleware(['admin']);
         if(!empty($_POST)){
             $this->model('AuthModel')->register($_POST);
             header('location: '.BASE_URL.'auth/register');
