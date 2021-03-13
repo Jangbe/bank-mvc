@@ -20,4 +20,16 @@ class Auth extends Controller{
             $this->view('auth/register');
         }
     }
+
+    public function logout()
+    {
+        if(isset($_SESSION['user'])){
+            unset($_SESSION['user']);
+
+            session_destroy();
+            session_unset();
+            redirect('auth/login');
+        }
+        redirect('auth/login');
+    }
 }
