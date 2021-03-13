@@ -4,14 +4,18 @@ class App{
     public $controller = 'Home';
     public $method = 'index';
     public $params = [];
+    private static $route = [];
 
     public function __construct(){
         $this->route('/', 'Admin@index');
         $this->route('/nasabah/create', 'Nasabah@create');
         $this->route('/nasabah/edit/{id}', 'Nasabah@edit');
+
+
+        $this->notFound();
     }
 
-    private function route($url, $contoller){ //AdminController@create
+    private function route($url, $contoller){
         $params = [];
         $result = false;
 
@@ -43,6 +47,8 @@ class App{
             $result = true;
         }
 
+        self::$route[] = $result;
+
         if ( $result ) {
             if(is_string($contoller)){
                 $contoller = explode('@', $contoller);
@@ -53,6 +59,14 @@ class App{
             }else if(is_callable($contoller)){
                 $contoller($params);
             }
+        }
+    }
+
+    public function notFound()
+    {
+        if(!in_array(true, self::$route)){
+            require '../app/views/error/404.php';
+            die;
         }
     }
 
