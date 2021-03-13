@@ -6,41 +6,53 @@ class App{
     public $params = [];
 
     public function __construct(){
-        $url = $this->parseUrl();
-
-        //untuk mengecek apakah controller tersedia
-        if(isset($url[0])){
-            if(file_exists('../app/controllers/'.ucwords($url[0]).'.php')){
-                $this->controller = $url[0];
-                unset($url[0]);
-            }
-        }
-
-        require '../app/controllers/'.ucwords($this->controller).'.php';
-        $this->controller = new $this->controller;
-
-        //untuk mengecek apakah method tersedia di dalam controller tersebut
-        if(isset($url[1])){
-            if(method_exists($this->controller, $url[1])){
-                $this->method = $url[1];
-                unset($url[1]);
-            }
-        }
-
-        //untuk mengecek apakah ada parameter yang dilampirkan?
-        if(!empty($url)){
-            $this->params = array_values($url);
-        }
-
-        call_user_func_array([$this->controller, $this->method], $this->params);
+        $this->route('/', 'Admin@index');
+        $this->route('/nasabah/create', 'Nasabah@create');
+        $this->route('/nasabah/edit/{id}', 'Nasabah@edit');
     }
 
-    public function parseUrl(){
+    private function route($url, $contoller){ //AdminController@create
+        $params = [];
+        $result = false;
+
         if(isset($_GET['url'])){
-            $url = rtrim($_GET['url'], '/');
+            //For url from website
+            $getUrl = '/'.rtrim($_GET['url'], '/');
+            $getUrl = filter_var($getUrl, FILTER_SANITIZE_URL);
+            $getUrl = explode('/', $getUrl);
+
+            //For url from route defined
+            $url = rtrim($url, '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
-            return $url;
+
+            if(count($url) === count($getUrl)){
+                foreach($url as $k => $v){
+                    if ($v == $getUrl[$k]){
+                        $result = true;
+                    } else if ( preg_match('/{[a-z]+}/', $v )){
+                        $result = true;
+                        $params[] = $getUrl[$k];
+                    } else {
+                        $result = false;
+                        break;
+                    }
+                }
+            }
+        }else if ($url == '/'){
+            $result = true;
+        }
+
+        if ( $result ) {
+            if(is_string($contoller)){
+                $contoller = explode('@', $contoller);
+                require_once '../app/controllers/'.$contoller[0].'.php';
+                $this->controller = new $contoller[0];
+                $this->method = $contoller[1];
+                call_user_func_array([$this->controller, $this->method], $params);
+            }else if(is_callable($contoller)){
+                $contoller($params);
+            }
         }
     }
 
