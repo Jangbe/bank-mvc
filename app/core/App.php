@@ -46,6 +46,10 @@ class App{
                 $this->route('/edit/{id}', 'User@update');
                 $this->route('/delete/{id}', 'User@destroy');
             });
+            $this->prefix('/rekening', function(){
+                $this->route('/', 'Rekening@index');
+                $this->route('/edit/{norek}', 'Rekening@edit');
+            });
         });
         
         $this->notFound();
@@ -105,7 +109,13 @@ class App{
     {
         $this->prefix = is_null($this->prefix) ? $prefix : $this->prefix.$prefix;
         $closure();
-        $this->prefix = null;
+        $this->prefix = explode('/', $this->prefix);
+        if(count($this->prefix) > 2){
+            array_pop($this->prefix);
+            $this->prefix = implode('/', $this->prefix);
+        }else{
+            $this->prefix = null;
+        }
     }
 
     public function notFound()
