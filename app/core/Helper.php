@@ -17,3 +17,8 @@ function redirect($url){
     header('location: '.BASE_URL.$url);
     exit;
 }
+
+function url($url)
+{
+    return BASE_URL.$url;
+}

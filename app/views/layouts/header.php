@@ -9,8 +9,19 @@
 <body>
     <!-- Navigasi -->
     <ul>
-        <li><a href="<?= BASE_URL ?>nasabah">Nasabah</a></li>
-        <li><a href="<?= BASE_URL ?>pegawai">Pegawai</a></li>
-        <li><a href="<?= BASE_URL ?>user">User</a></li> 
-        <li><a href="<?= BASE_URL ?>rekening">Rekening</a></li> 
+    <?php
+        switch($_SESSION['user']['level']){
+            case 'admin':
+                include __DIR__.'/admin-nav.php';
+                break;
+            case 'operator':
+                include __DIR__.'/operator-nav.php';
+                break;
+            default:
+                include __DIR__.'/nasabah-nav.php';
+                break;
+        }
+
+    ?>
+    <li><a href="<?= url('auth/logout') ?>">Logout</a></li>
     </ul>

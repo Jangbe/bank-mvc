@@ -17,13 +17,13 @@ class AuthModel{
         $_SESSION['user'] = $user;
         if($user){
             if($user['level'] == 'admin'){
-                header('location: '.BASE_URL.'admin/index');
+                header('location: '.BASE_URL.'admin');
                 exit;
             }else if($user['level'] == 'operator'){
-                header('location: '.BASE_URL.'operator/index');
+                header('location: '.BASE_URL.'operator');
                 exit;
             }else{
-                header('location: '.BASE_URL.'nasabah/index');
+                header('location: '.BASE_URL.'nasabah');
                 exit;
             }
         }else{

@@ -4,37 +4,59 @@ class App{
     public $controller = 'Home';
     public $method = 'index';
     public $params = [];
+    private $prefix = null;
     private static $route = [];
+    private $url = [];
 
     public function __construct(){
         //Landing page
         $this->route('/', 'Admin@index');
 
+        //Authentication
+        $this->prefix('/auth', function(){
+            $this->route('/login', 'Auth@login');
+            $this->route('/logout', 'Auth@logout');
+        });
+
         //Untuk tampilan nasabah
-        $this->route('/nasabah', 'Nasabah@index');
-        $this->route('/nasabah/create', 'Nasabah@create');
-        $this->route('/nasabah/edit/{id}', 'Nasabah@edit');
-        $this->route('/nasabah/delete/{id}', 'Nasabah@delete');
+        $this->prefix('/nasabah', function(){
+            $this->route('', 'Nasabah@index');
+            $this->route('/create', 'Nasabah@create');
+            $this->route('/edit/{id}', 'Nasabah@edit');
+            $this->route('/delete/{id}', 'Nasabah@delete');
+        });
 
         //Untuk tampilan operator
-        $this->route('/operator', 'Operator@index');
-        $this->route('/operator/create',  'Operator@create');
-        $this->route('/operator/edit/{id}', 'Operator@edit');
-        $this->route('/operator/delete/{id}', 'Operator@delete');
+        $this->prefix('/operator', function(){
+            $this->route('', 'Operator@index');
+            $this->route('/create',  'Operator@create');
+            $this->route('/edit/{id}', 'Operator@edit');
+            $this->route('/delete/{id}', 'Operator@delete');
+        });
 
         //Untuk tampilan admin
-        $this->route('/admin', 'Admin@index');
-        $this->route('/admin/create',  'Admin@create');
-        $this->route('/admin/edit/{id}', 'Admin@edit');
-        $this->route('/admin/delete/{id}', 'Admin@delete');
+        $this->prefix('/admin', function(){
+            $this->route('', 'Admin@index');
+            $this->route('/create',  'Admin@create');
+            $this->route('/edit/{id}', 'Admin@edit');
+            $this->route('/delete/{id}', 'Admin@delete');
+            $this->prefix('/user', function(){
+                $this->route('/', 'User@index');
+                $this->route('/create', 'User@create');
+                $this->route('/edit/{id}', 'User@update');
+                $this->route('/delete/{id}', 'User@destroy');
+            });
+        });
         
-
         $this->notFound();
     }
 
     private function route($url, $contoller){
         $params = [];
         $result = false;
+
+        $url = is_null($this->prefix) ? $url : $this->prefix.$url;
+        $this->url[] = $url;
 
         if(isset($_GET['url'])){
             //For url from website
@@ -77,6 +99,13 @@ class App{
                 $contoller($params);
             }
         }
+    }
+
+    public function prefix(String $prefix, Closure $closure)
+    {
+        $this->prefix = is_null($this->prefix) ? $prefix : $this->prefix.$prefix;
+        $closure();
+        $this->prefix = null;
     }
 
     public function notFound()
