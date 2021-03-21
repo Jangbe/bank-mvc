@@ -48,6 +48,7 @@ class UserModel{
         }
 
         setFlash('pesan', 'User berhasil dibuat');
+        redirect('admin/user');
     }
 
     public function editUser($id, $post)

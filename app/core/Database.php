@@ -60,6 +60,14 @@ class Database{
         return $this;
     }
 
+    public function binds(Array $value)
+    {
+        foreach($value as $k => $v){
+            $this->bind($k, $v);
+        }
+        return $this;
+    }
+
     public function where($column, $where)
     {
         if(!empty($this->table)){

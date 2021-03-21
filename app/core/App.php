@@ -48,7 +48,9 @@ class App{
             });
             $this->prefix('/rekening', function(){
                 $this->route('/', 'Rekening@index');
+                $this->route('/create', 'Rekening@create');
                 $this->route('/edit/{norek}', 'Rekening@edit');
+                $this->route('/delete/{norek}', 'Rekening@destroy');
             });
         });
         
