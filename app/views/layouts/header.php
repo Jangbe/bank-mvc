@@ -25,3 +25,5 @@
     ?>
     <li><a href="<?= url('auth/logout') ?>">Logout</a></li>
     </ul>
+
+    <?= getFlash('pesan') ?>

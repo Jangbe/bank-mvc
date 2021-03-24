@@ -1,4 +1,4 @@
-<h1>Daftar User</h1>
+<h1>Daftar Rekening</h1>
 <a href="<?= url('admin/rekening/create') ?>">Buat Rekening</a>
 <table border="1" cellpadding="10" width="50%">
     <thead>

@@ -30,7 +30,7 @@ class User extends Controller{
         }
     }
 
-    public function update(int $id)
+    public function update($id)
     {
         if(!empty($_POST)){
             $this->model('UserModel')->editUser($id, $_POST);

@@ -14,8 +14,7 @@ class Rekening extends Controller{
         if(!empty($_POST)){
             $this->model('RekeningModel')->createRekening($_POST);
         }else{
-                $this->route('/edit/{norek}', 'Rekening@edit');
-                $prefix = substr(time(),-5, 5); //ambil 4 digit depanya
+            $prefix = substr(time(),-5, 5); //ambil 4 digit depanya
             $suffix = substr(rand(), 0, 7); //ambil 8 digit belakangnta
             $norek = $prefix.$suffix;
             $nasabah = $this->model('NasabahModel')->getAllNasabah();

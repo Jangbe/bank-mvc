@@ -14,12 +14,13 @@ class RekeningModel{
         return $rekening;
     }
 
-    public function getRekening(Int $norek)
+    public function getRekening($norek)
     {
         $rekening = $this->db->query("SELECT * FROM rekening 
                                       JOIN nasabah ON nasabah.id_nasabah = rekening.id_nasabah
                                       WHERE rekening.no_rekening = :norek")
                              ->bind('norek', $norek)->first();
+        if(!$rekening) abort();
         return $rekening;
     }
 
@@ -32,7 +33,7 @@ class RekeningModel{
         redirect('admin/rekening');
     }
 
-    public function editRekening(Int $norek, Array $post)
+    public function editRekening($norek, $post)
     {
         $rekening = $this->db->query("SELECT * FROM rekening WHERE no_rekening = :norek")
                              ->bind('norek', $norek)->first();

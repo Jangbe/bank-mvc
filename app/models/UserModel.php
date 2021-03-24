@@ -24,6 +24,7 @@ class UserModel{
         }
         $pangkat = isset($table) ? $this->db->query("SELECT * FROM $table WHERE id_user=:id")
             ->bind('id', $id)->first() : [];
+        if(!$user) abort();
         return [$user, $pangkat];
     }
 

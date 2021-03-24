@@ -18,7 +18,22 @@ function redirect($url){
     exit;
 }
 
+function abort($code = '404'){
+    require_once __DIR__.'/../views/error/'.$code.'.php';
+    exit;
+}
+
 function url($url)
 {
     return BASE_URL.$url;
+}
+
+function transaksi($tr = null)
+{
+    $transaksi = [
+        'setor' => 'Setor',
+        'tarik' => 'Tarik',
+        'tf'    => 'Transfer',
+    ];
+    return is_null($tr) ? $transaksi : $transaksi[$tr];
 }

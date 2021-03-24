@@ -52,6 +52,11 @@ class App{
                 $this->route('/edit/{norek}', 'Rekening@edit');
                 $this->route('/delete/{norek}', 'Rekening@destroy');
             });
+            $this->prefix('/transaksi', function(){
+                $this->route('', 'Transaksi@index');
+                $this->route('/add', 'Transaksi@add');
+                $this->route('/detail/{id}', 'Transaksi@detail');
+            });
         });
         
         $this->notFound();

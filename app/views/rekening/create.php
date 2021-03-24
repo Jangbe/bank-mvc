@@ -30,10 +30,9 @@ document.addEventListener("DOMContentLoaded", function(){
     let pin = document.getElementById('pin');
 
     //validasi input harus angka
-    pin.addEventListener('keydown', function(event){
-        if(isNaN(event.key) && event.key !== 'Backspace'){
-            event.preventDefault();
-            return false;
+    pin.addEventListener('keydown', function(e){
+        if(e.key.length === 1 && e.key.match(/[a-z]/i)){
+            e.preventDefault();
         }
     });
 });
