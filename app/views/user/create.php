@@ -60,25 +60,16 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function(){
-        let hide = function(elm) {
-            elm.style.display = 'none';
-        };
-        let show = function(elm) {
-            elm.style.display = 'block';
+        $('#user').addClass('active');
+        
+        if($('#level').val() == 'admin'){
+            $('#tingkat').hide();
         }
-
-        let id = document.getElementById('level');
-        let tingkat = document.getElementById('tingkat');
-        if(id.value == 'admin'){
-            hide(tingkat);
-        }
-        // console.log(tingkat);   
-        id.addEventListener('change', function(e){
-            let level = id.value;
-            if(level == 'admin'){
-                hide(tingkat);
+        $('#level').on('change', function(){
+            if($(this).val() == 'admin'){
+                $('#tingkat').fadeOut();
             }else{
-                show(tingkat);
+                $('#tingkat').fadeIn();
             }
         });
     })

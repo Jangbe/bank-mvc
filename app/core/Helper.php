@@ -23,7 +23,7 @@ function abort($code = '404'){
     exit;
 }
 
-function url($url)
+function url($url = '')
 {
     return BASE_URL.$url;
 }

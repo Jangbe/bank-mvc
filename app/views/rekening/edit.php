@@ -30,6 +30,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
+    $('#rekening').addClass('active');
     let pin = document.querySelectorAll('.pin');
 
     //validasi input harus angka

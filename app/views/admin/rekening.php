@@ -17,8 +17,8 @@
             <td><?= $rek['nm_nasabah'] ?></td>
             <td>
                 <a href="<?= url('admin/rekening/edit/'.$rek['no_rekening']) ?>">Edit</a> 
-                <form style="display: inline" action="<?= url('admin/rekening/delete/').$rek['no_rekening'] ?>" method="post" class="delete-user">
-                    <button type="submit">Hapus</button>
+                <form style="display: inline" action="<?= url('admin/rekening/delete/').$rek['no_rekening'] ?>" method="post">
+                    <button type="button" class="delete-user">Hapus</button>
                 </form>
             </td>
         </tr>
@@ -28,11 +28,21 @@
 
 <script>
     document.addEventListener('DOMContentLoaded',function(){
-        let deleteButton = document.querySelectorAll('.delete-user');
-        deleteButton.forEach(function(btn){
-            btn.addEventListener('submit', function(e){
-                if(!confirm('Yakin menghapus user ini?')){
-                    e.preventDefault();
+        $('#rekening').addClass('active');
+        $('.delete-user').on('click', function(){
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Rekening akan terhapus selamanya!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Tidak'
+            }).then(result => {
+                if (result.value) {
+                    this.form.submit();
+                    Swal.fire( 'Deleted!', 'Your file has been deleted.', 'success' );
                 }
             });
         });

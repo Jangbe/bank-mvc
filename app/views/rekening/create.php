@@ -27,10 +27,10 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
-    let pin = document.getElementById('pin');
+    $('#rekening').addClass('active');
 
-    //validasi input harus angka
-    pin.addEventListener('keydown', function(e){
+    //validasi input pin harus angka
+    $('#pin').on('keydown', function(e){
         if(e.key.length === 1 && e.key.match(/[a-z]/i)){
             e.preventDefault();
         }

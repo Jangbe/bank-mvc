@@ -15,8 +15,8 @@
             <td><?= $user['level'] ?></td>
             <td>
                 <a href="<?= url('admin/user/edit/'.$user['id_user']) ?>">Edit</a> 
-                <form style="display: inline" action="<?= url('admin/user/delete/').$user['id_user'] ?>" method="post" class="delete-user">
-                    <button type="submit">Hapus</button>
+                <form style="display: inline" action="<?= url('admin/user/delete/').$user['id_user'] ?>" method="post">
+                    <button type="button" class="delete-user">Hapus</button>
                 </form>
             </td>
         </tr>
@@ -26,11 +26,22 @@
 
 <script>
     document.addEventListener('DOMContentLoaded',function(){
-        let deleteButton = document.querySelectorAll('.delete-user');
-        deleteButton.forEach(function(btn){
-            btn.addEventListener('submit', function(e){
-                if(!confirm('Yakin menghapus user ini?')){
-                    e.preventDefault();
+        $('#user').addClass('active');
+
+        $('.delete-user').on('click', function(){
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "User akan terhapus selamanya!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Tidak'
+            }).then(result => {
+                if (result.value) {
+                    this.form.submit();
+                    Swal.fire( 'Deleted!', 'Your file has been deleted.', 'success' );
                 }
             });
         });
