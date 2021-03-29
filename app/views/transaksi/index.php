@@ -20,3 +20,9 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        $('#transaksi').addClass('active');
+    });
+</script>

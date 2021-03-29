@@ -2,13 +2,14 @@
 
 function setFlash($name, $value, $type = 'success')
 {
-    $_SESSION[$name] = "<div class='alert alert-$type'>$value</div>";
+    $type = $type=='danger'?'error':'success';
+    $_SESSION[$name] = ['message'=>$value, 'type'=>$type];
 }
 
-function getFlash($name)
+function getFlash($name, $closure)
 {
     if(isset($_SESSION[$name])){
-        echo $_SESSION[$name];
+        $closure($_SESSION[$name]);
         unset($_SESSION[$name]);
     }
 }
