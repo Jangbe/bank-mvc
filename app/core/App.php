@@ -32,6 +32,12 @@ class App{
             $this->route('/create',  'Operator@create');
             $this->route('/edit/{id}', 'Operator@edit');
             $this->route('/delete/{id}', 'Operator@delete');
+            $this->prefix('/nasabah', function(){
+                $this->route('/', 'Nasabah@index');
+                $this->route('/create', 'Nasabah@create');
+                $this->route('/edit/{id}', 'Nasabah@update');
+                $this->route('/delete/{id}', 'Nasabah@destroy');
+            });
         });
 
         //Untuk tampilan admin

@@ -8,18 +8,24 @@ class Nasabah extends Controller{
 
     public function index()
     {
-        $this->view('layouts/header');
-        $this->view('nasabah/index');
-        $this->view('layouts/footer');
+        if(!empty($_POST)){
+            $this->model('NasabahModel')->createNasabah($_POST);
+        }else{
+            $nasabah = $this->model('NasabahModel')->getAllNasabah();
+            $users = $this->model('UserModel')->getAllUsersNasabah();
+            $this->view('layouts/header');
+            $this->view('nasabah/index', compact('nasabah','users'));
+            $this->view('layouts/footer');
+        }
     }
 
     public function create()
     {
-        echo 'ini class nasabah dengan method create';
+        
     }
 
     public function edit($id)
     {
-        echo 'Hi, id nya adalah '.$id;
+
     }
 }
