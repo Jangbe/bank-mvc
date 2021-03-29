@@ -32,9 +32,15 @@
                             </span>
                         </td>
                         <td>
-                            <button class="btn btn-success edit-user" data-id="<?= $user['id_user']; ?>">Edit</button> 
+                            <button class="btn btn-success edit-user" data-id="<?= $user['id_user']; ?>">
+                                <i class="fas fa-edit"></i>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button> 
                             <form style="display: inline" action="<?= url('admin/user/delete/').$user['id_user'] ?>" method="post">
-                                <button type="button" class="btn btn-danger delete-user" data-id="<?= $user['id_user']; ?>">Hapus</button>
+                                <button type="button" class="btn btn-danger delete-user" data-id="<?= $user['id_user']; ?>">
+                                    <i class="fas fa-trash"></i>
+                                    <span class="d-none d-md-inline">Hapus</span>
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -99,7 +105,7 @@
             $('#email').val('');
             $('#alamat').val('');
             
-            $('#modalForm').attr('action', "<?= url('admin/user/create') ?>");
+            $('#modalForm').attr('action', "<?= url($_SESSION['user']['level'].'/user/create') ?>");
             $('#createUserLabel').text('Buat User Baru');
             $('#createUser').modal('show');
             $('#tingkat').fadeOut(1000);
@@ -124,7 +130,7 @@
                     $('#email').val(result[1].email ?? '');
                     $('#alamat').val(result[1].alamat ?? '');
 
-                    $('#modalForm').attr('action', "<?= url('admin/user/edit/') ?>"+result[0].id_user);
+                    $('#modalForm').attr('action', "<?= url($_SESSION['user']['level'].'/user/edit/') ?>"+result[0].id_user);
                     $('#createUserLabel').text('Edit User '+result[0].username).css('textTransform', 'capitalize');
                     $('#createUser').modal('show');
                 }

@@ -38,3 +38,13 @@ function transaksi($tr = null)
     ];
     return is_null($tr) ? $transaksi : $transaksi[$tr];
 }
+
+function user($index = ''){
+    if(isset($_SESSION['user'][$index])){
+        return $_SESSION['user'][$index];
+    }else if(isset($_SESSION['user'])){
+        return $_SESSION['user'];
+    }else{
+        return [];
+    }
+}

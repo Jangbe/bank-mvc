@@ -33,7 +33,7 @@ class TransaksiModel{
         if($post['jns_transaksi'] == 'tarik' || $post['jns_transaksi'] == 'tf'){
             if($saldo['saldo'] < $post['nominal']){
                 setFlash('pesan', 'Saldo tidak cukup!', 'danger');
-                redirect('admin/transaksi');
+                redirect(user('level').'/transaksi');
             }else{
                 $saldo = $saldo['saldo'] - $post['nominal'];
             }
@@ -64,6 +64,6 @@ class TransaksiModel{
         }
 
         setFlash('pesan', 'Transaksi berhasil dibuat.');
-        redirect('admin/transaksi');
+        redirect(user('level').'/transaksi');
     }
 }

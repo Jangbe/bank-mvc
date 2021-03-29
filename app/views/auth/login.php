@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Login User</h1>
-    <?php getFlash('pesan') ?>
+    <?php getFlash('pesan', 'cej') ?>
     <form action="" method="post">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username"><br>
