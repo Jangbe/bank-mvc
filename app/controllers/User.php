@@ -9,9 +9,23 @@ class User extends Controller{
     public function index()
     {
         $users = $this->model('UserModel')->getAllUsers();
+        $level = [
+            'admin' => 'Admin',
+            'operator' => 'Operator',
+            'nasabah' => 'Nasabah'
+        ];
         $this->view('layouts/header');
-        $this->view('admin/user', compact('users'));
+        $this->view('user/index', compact('users', 'level'));
         $this->view('layouts/footer');
+    }
+
+    public function show()
+    {
+        if(!empty($_POST)){
+            echo json_encode($this->model('UserModel')->getUser($_POST['id_user']));
+        }else{
+            abort(403);
+        }
     }
 
     public function create()
@@ -19,14 +33,7 @@ class User extends Controller{
         if(!empty($_POST)){
             $this->model('UserModel')->createUser($_POST);
         }else{
-            $level = [
-                'admin' => 'Admin',
-                'operator' => 'Operator',
-                'nasabah' => 'Nasabah'
-            ];
-            $this->view('layouts/header');
-            $this->view('user/create', compact('level'));
-            $this->view('layouts/footer');
+            abort(403);
         }
     }
 
@@ -35,17 +42,7 @@ class User extends Controller{
         if(!empty($_POST)){
             $this->model('UserModel')->editUser($id, $_POST);
         }else{
-            $data = $this->model('UserModel')->getUser($id);
-            $pangkat = $data[1];
-            $user = $data[0];
-            $level = [
-                'admin' => 'Admin',
-                'operator' => 'Operator',
-                'nasabah' => 'Nasabah'
-            ];
-            $this->view('layouts/header');
-            $this->view('user/edit', compact('user', 'pangkat' ,'level'));
-            $this->view('layouts/footer');
+            abort(403);
         }
     }
 
@@ -54,7 +51,7 @@ class User extends Controller{
         if($_SERVER["REQUEST_METHOD"] == 'POST'){
             $this->model('UserModel')->destroy($id);
         }else{
-            redirect('admin/user');
+            abort(403);
         }
     }
 }

@@ -20,9 +20,11 @@ class AuthModel{
                 header('location: '.BASE_URL.'admin');
                 exit;
             }else if($user['level'] == 'operator'){
+                $_SESSION['pegawai'] = $this->db->query("SELECT * FROM pegawai WHERE id_user=$user[id_user]")->first();
                 header('location: '.BASE_URL.'operator');
                 exit;
             }else{
+                $_SESSION['nasabah'] = $this->db->query("SELECT * FROM nasabah WHERE id_user=$user[id_user]")->first();
                 header('location: '.BASE_URL.'nasabah');
                 exit;
             }

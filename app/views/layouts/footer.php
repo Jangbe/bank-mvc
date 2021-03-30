@@ -1,9 +1,9 @@
       <!-- Footer -->
-      <footer class="footer pt-0 mt-5">
+      <footer class="footer pt-0 mt-2">
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-lg-6">
             <div class="copyright text-center  text-lg-left  text-muted">
-              &copy; 2021 <a href="#" class="font-weight-bold ml-1" target="_blank">Kelompok 2</a>
+              &copy; 2021 Dibuat oleh <a href="#" class="font-weight-bold ml-1" target="_blank">Kelompok 2</a>
             </div>
           </div>
         </div>
@@ -27,6 +27,17 @@
           $('.alert').fadeOut();
       }, 3000);
   </script>
+  <?php getFlash('pesan', function($msg){ ?>
+      <script>
+        Swal.fire({
+        position: 'top-end',
+        type: '<?= $msg['type'] ?>',
+        title: '<?= $msg['message'] ?>',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      </script>
+  <?php }); ?>
 </body>
 
 </html>

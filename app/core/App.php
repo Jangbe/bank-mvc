@@ -58,6 +58,9 @@ class App{
                 $this->route('/detail/{id}', 'Transaksi@detail');
             });
         });
+
+        $this->route('/ajax_user', 'User@show');
+        $this->route('/ajax_rekening', 'Rekening@show');
         
         $this->notFound();
     }

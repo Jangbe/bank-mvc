@@ -27,10 +27,12 @@ class RekeningModel{
     public function createRekening($post)
     {
         $this->db->query("INSERT INTO rekening (no_rekening, saldo, pin, id_nasabah) VALUES (:norek, 0, :pin, :id_nasabah)")
-                 ->binds($post)
+                 ->bind('norek',$post['norek'])
+                 ->bind('pin',$post['pin'])
+                 ->bind('id_nasabah',$post['id_nasabah'])
                  ->execute();
         setFlash('pesan', 'Rekening berhasil ditambahkan!');
-        redirect('admin/rekening');
+        redirect(user('level').'/rekening');
     }
 
     public function editRekening($norek, $post)
@@ -43,10 +45,10 @@ class RekeningModel{
                      ->bind('norek', $norek)
                      ->execute();
             setFlash('pesan', 'PIN berhasil diganti.');
-            redirect('admin/rekening');
+            redirect(user('level').'/rekening');
         }else{
             setFlash('pesan', 'PIN salah, PIN gagal diganti.', 'danger');
-            redirect('admin/rekening/edit/'.$norek);
+            redirect(user('level').'/rekening');
         }
     }
 
@@ -54,6 +56,7 @@ class RekeningModel{
     {
         $this->db->query("DELETE FROM rekening WHERE no_rekening=:norek")->bind('norek', $norek)->execute();
         setFlash('pesan', 'Rekening berhasil dihapus!');
+        redirect(user('level').'/rekening');
     }
 
 }
