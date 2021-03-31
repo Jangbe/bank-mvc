@@ -9,12 +9,14 @@ class Transaksi extends Controller{
         $this->view('layouts/footer');
     }
 
-    public function detail($id)
+    public function detail()
     {
-        $transaksi = $this->model('TransaksiModel')->getTransaksiByIdNasabah($id);
-        $this->view('layouts/header');
-        $this->view('transaksi/detail', compact('transaksi'));
-        $this->view('layouts/footer');
+        if(!empty($_POST)){
+            $transaksi = $this->model('TransaksiModel')->getTransaksiByIdNasabah($_POST['id']);
+            echo json_encode($transaksi);
+        }else{
+            abort(403);
+        }
     }
 
     public function add()

@@ -10,7 +10,7 @@ class RekeningModel{
 
     public function getAllRekening()
     {
-        $rekening = $this->db->query("SELECT * FROM rekening JOIN nasabah ON nasabah.id_nasabah = rekening.id_nasabah")->get();
+        $rekening = $this->db->query("SELECT * FROM rekening JOIN nasabah ON nasabah.id_nasabah = rekening.id_nasabah JOIN saldo ON saldo.no_rekening=rekening.no_rekening")->get();
         return $rekening;
     }
 
@@ -26,7 +26,8 @@ class RekeningModel{
 
     public function createRekening($post)
     {
-        $this->db->query("INSERT INTO rekening (no_rekening, saldo, pin, id_nasabah) VALUES (:norek, 0, :pin, :id_nasabah)")
+        // var_dump($post['norek']);die;
+        $this->db->query("INSERT INTO rekening (no_rekening, pin, id_nasabah) VALUES (:norek, :pin, :id_nasabah)")
                  ->bind('norek',$post['norek'])
                  ->bind('pin',$post['pin'])
                  ->bind('id_nasabah',$post['id_nasabah'])

@@ -20,13 +20,10 @@
   <script src="<?= url() ?>assets/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="<?= url() ?>assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <script src="<?= url() ?>assets/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="<?= url() ?>assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="<?= url() ?>assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
   <!-- Argon JS -->
   <script src="<?= url() ?>assets/js/argon.js?v=1.2.0"></script>
-  <script>
-      setInterval(() => {
-          $('.alert').fadeOut();
-      }, 3000);
-  </script>
   <?php getFlash('pesan', function($msg){ ?>
       <script>
         Swal.fire({

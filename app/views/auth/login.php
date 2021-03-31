@@ -14,6 +14,7 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="<?= url() ?>assets/vendor/sweetalert2/dist/sweetalert2.min.css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
@@ -46,7 +47,7 @@
         </div>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="dashboard.html" class="nav-link">
+            <a href="#" class="nav-link">
               <span class="nav-link-inner--text">Dashboard</span>
             </a>
           </li>
@@ -54,13 +55,13 @@
         <hr class="d-lg-none" />
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" data-original-title="Like us on Facebook">
+            <a class="nav-link nav-link-icon" href="https://www.facebook.com/" target="_blank" data-toggle="tooltip" data-original-title="Like us on Facebook">
               <i class="fab fa-facebook-square"></i>
               <span class="nav-link-inner--text d-lg-none">Facebook</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="https://github.com/creativetimofficial" target="_blank" data-toggle="tooltip" data-original-title="Star us on Github">
+            <a class="nav-link nav-link-icon" href="https://github.com/Jangbe/bank-mvc" target="_blank" data-toggle="tooltip" data-original-title="Star us on Github">
               <i class="fab fa-github"></i>
               <span class="nav-link-inner--text d-lg-none">Github</span>
             </a>
@@ -76,11 +77,11 @@
     <!-- Header -->
     <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
       <div class="container">
-        <div class="header-body text-center mb-7">
+        <div class="header-body text-center mb-5">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
               <h1 class="text-white">Selamat Datang!</h1>
-              <p class="text-lead text-white">Selamat Datang di website BANK MVC buatan kelompok 2</p>
+              <p class="text-lead text-white">di website BANK MVC buatan <b>kelompok 2</b></p>
             </div>
           </div>
         </div>
@@ -96,20 +97,17 @@
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
-             <div class="card-header bg-transparent mt--5 pb-1">
-               <div class="btn-wrapper text-center">  
-            </div>
-            <div class="card-body px-lg-5 py-lg-5">
+            <div class="card-body px-lg-5 py-lg-4">
               <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+                <small>Login menggunakan username</small>
               </div>
-              <form role="form">
+              <form role="form" action="" method="post">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" name="username" placeholder="Username" type="text">
                   </div>
                 </div>
                 <div class="form-group">
@@ -117,21 +115,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" name="password" placeholder="Password" type="password">
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4">Masuk</button>
                 </div>
               </form>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-              <a href="#" class="text-light"><small>Forgot password?</small></a>
-            </div>
-            <div class="col-6 text-right">
-              <a href="#" class="text-light"><small>Create new account</small></a>
             </div>
           </div>
         </div>
@@ -144,24 +134,8 @@
       <div class="row align-items-center justify-content-xl-between">
         <div class="col-xl-6">
           <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2021 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+            &copy; 2021 Di Buat Oleh <a href="#" class="font-weight-bold ml-1" target="_blank">Kelompok 2</a>
           </div>
-        </div>
-        <div class="col-xl-6">
-          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -173,30 +147,18 @@
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="<?= url() ?>assets/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
   <!-- Argon JS -->
+  <?php getFlash('pesan', function($msg){ ?>
+      <script>
+        Swal.fire({
+        position: 'top-end',
+        type: '<?= $msg['type'] ?>',
+        title: '<?= $msg['message'] ?>',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      </script>
+  <?php }); ?>
   <script src="../assets/js/argon.js?v=1.2.0"></script>
 </body>
-
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
-    <title>Login</title>
-</head>
-<body>
-    <h1>Login User</h1>
-    <?php getFlash('pesan', 'cej') ?>
-    <form action="" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username"><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password"><br>
-        <button type="submit">Login</button>
-    </form>
-    <a href="<?= BASE_URL ?>auth/register">Register</a>
-</body>
-</html>

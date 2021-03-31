@@ -5,3 +5,4 @@ require 'core/Controller.php';
 require 'core/Database.php';
 require 'core/Config.php';
 require 'core/Helper.php';
+require '../vendor/autoload.php';

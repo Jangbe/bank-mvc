@@ -13,7 +13,10 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <button id="buatRekening" class="btn btn-sm btn-neutral">Buat Baru</button>
+                    <button id="buatRekening" class="btn btn-sm btn-neutral">
+                        <i class="fas fa-plus"></i>
+                        Buat Baru
+                    </button>
                 </div>
             </div>
         </div>
@@ -151,8 +154,7 @@
             $('#pin').val('').parent().show();
             $('#pin_old').parent().hide();
             $('#pin_new').parent().hide();
-            $('#id_nasabah').val('');
-            $('#id_nasabah option').attr('disabled', false);
+            $('#id_nasabah').val('').attr('disabled', false);
             
             $('#modalForm').attr('action', "<?= url($_SESSION['user']['level'].'/rekening/create') ?>");
             $('#createRekeningLabel').text('Buat Rekening Baru');
@@ -171,8 +173,7 @@
                     $('#pin').parent().hide();
                     $('#pin_old').parent().show();
                     $('#pin_new').parent().show();
-                    $('#id_nasabah').val(result.id_nasabah);
-                    $('#id_nasabah option:not(:selected)').attr('disabled', true);
+                    $('#id_nasabah').val(result.id_nasabah).attr('disabled', true);
 
                     $('#modalForm').attr('action', "<?= url($_SESSION['user']['level'].'/rekening/edit/') ?>"+result.no_rekening);
                     $('#createRekeningLabel').text('Edit Rekening '+result.id_nasabah).css('textTransform', 'capitalize');

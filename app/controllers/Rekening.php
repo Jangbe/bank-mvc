@@ -5,8 +5,8 @@ class Rekening extends Controller{
     {
         $nasabah = $this->model('NasabahModel')->getAllNasabah();
         $rekening = $this->model('RekeningModel')->getAllRekening();
-        $prefix = substr(time(),-4, 4); //ambil 4 digit depanya
-        $suffix = substr(rand(), 0, 7); //ambil 8 digit belakangnta
+        $prefix = substr(time(),-3, 3); //ambil 4 digit depanya
+        $suffix = substr(rand(), 0, 6); //ambil 8 digit belakangnta
         $norek = '1'.$prefix.$suffix;
         $this->view('layouts/header');
         $this->view('rekening/index', compact('rekening', 'norek', 'nasabah'));

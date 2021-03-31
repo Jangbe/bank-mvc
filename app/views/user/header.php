@@ -13,7 +13,10 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <button id="buatUser" class="btn btn-sm btn-neutral">Buat Baru</button>
+                    <button id="buatUser" class="btn btn-sm btn-neutral">
+                        <i class="fas fa-plus"></i>
+                        Buat Baru
+                    </button>
                 </div>
             </div>
         </div>
