@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?= url() ?>assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="<?= url() ?>assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <link rel="stylesheet" href="<?= url() ?>assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="<?= url() ?>assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?= url() ?>assets/css/argon.css?v=1.2.0" type="text/css">
@@ -50,7 +51,7 @@
             ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?= url('auth/logout') ?>">
-                <i class="ni ni-circle-08 text-pink"></i>
+                <i class="ni ni-user-run text-green"></i>
                 <span class="nav-link-text">Logout</span>
                 </a>
             </li>
@@ -139,7 +140,7 @@
                     <img alt="Image placeholder" src="<?= url() ?>assets/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                    <span class="mb-0 text-sm  font-weight-bold"><?= $_SESSION['nasabah']['nm_nasabah'] ?? $_SESSION['pegawai']['nm_pegawai'] ??ucwords($_SESSION['user']['username']) ?></span>
                   </div>
                 </div>
               </a>
@@ -164,6 +165,3 @@
     </nav>
     <!-- Header -->
     <!-- Page content -->
-    <div class="container-fluid mt-3">
-
-    <?php getFlash('pesan') ?>

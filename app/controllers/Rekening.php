@@ -3,10 +3,23 @@
 class Rekening extends Controller{
     public function index()
     {
+        $nasabah = $this->model('NasabahModel')->getAllNasabah();
         $rekening = $this->model('RekeningModel')->getAllRekening();
+        $prefix = substr(time(),-3, 3); //ambil 4 digit depanya
+        $suffix = substr(rand(), 0, 6); //ambil 8 digit belakangnta
+        $norek = '1'.$prefix.$suffix;
         $this->view('layouts/header');
-        $this->view('admin/rekening', compact('rekening'));
+        $this->view('rekening/index', compact('rekening', 'norek', 'nasabah'));
         $this->view('layouts/footer');
+    }
+
+    public function show()
+    {
+        if(!empty($_POST)){
+            echo json_encode($this->model('RekeningModel')->getRekening($_POST['norek']));
+        }else{
+            abort(403);
+        }
     }
 
     public function create()
@@ -14,13 +27,7 @@ class Rekening extends Controller{
         if(!empty($_POST)){
             $this->model('RekeningModel')->createRekening($_POST);
         }else{
-            $prefix = substr(time(),-5, 5); //ambil 4 digit depanya
-            $suffix = substr(rand(), 0, 7); //ambil 8 digit belakangnta
-            $norek = $prefix.$suffix;
-            $nasabah = $this->model('NasabahModel')->getAllNasabah();
-            $this->view('layouts/header');
-            $this->view('rekening/create', compact('norek', 'nasabah'));
-            $this->view('layouts/footer');
+            abort(403);
         }
     }
 
@@ -29,10 +36,7 @@ class Rekening extends Controller{
         if(!empty($_POST)){
             $this->model('RekeningModel')->editRekening($norek, $_POST);
         }else{
-            $rekening = $this->model('RekeningModel')->getRekening($norek);
-            $this->view('layouts/header');
-            $this->view('rekening/edit', compact('rekening'));
-            $this->view('layouts/footer');
+            abort(403);
         }
     }
 
@@ -41,6 +45,6 @@ class Rekening extends Controller{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $this->model('RekeningModel')->destroy($norek);
         }
-        redirect('admin/rekening');
+        abort(403);
     }
 }
