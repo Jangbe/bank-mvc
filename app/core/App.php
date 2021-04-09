@@ -37,7 +37,12 @@ class App{
                 $this->route('/create', 'Nasabah@create');
                 $this->route('/edit/{id}', 'Nasabah@update');
                 $this->route('/delete/{id}', 'Nasabah@destroy');
-            });
+                });
+                $this->prefix('/transaksi', function(){
+                    $this->route('', 'Transaksi@index');
+                    $this->route('/add', 'Transaksi@add');
+                    $this->route('/detail/{id}', 'Transaksi@detail');
+                });
         });
 
         //Untuk tampilan admin
@@ -68,6 +73,7 @@ class App{
         $this->route('/ajax_user', 'User@show');
         $this->route('/ajax_rekening', 'Rekening@show');
         $this->route('/ajax_transaksi', 'Transaksi@detail');
+        $this->route('/ajax_nasabah', 'Nasabah@show');
         
         $this->notFound();
     }

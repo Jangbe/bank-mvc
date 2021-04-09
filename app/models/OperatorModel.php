@@ -10,6 +10,7 @@ class OperatorModel{
 
     public function getAllOperator()
     {
+        
         return $this->db->all();
     }
 }
