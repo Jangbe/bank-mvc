@@ -62,6 +62,7 @@ class App{
         $this->route('/ajax_user', 'User@show');
         $this->route('/ajax_rekening', 'Rekening@show');
         $this->route('/ajax_transaksi', 'Transaksi@detail');
+        $this->route('/generate', 'Admin@generate');
         
         $this->notFound();
     }

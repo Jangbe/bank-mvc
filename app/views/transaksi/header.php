@@ -13,7 +13,7 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
-                    <button id="generateLaporan" class="btn btn-sm btn-neutral">
+                    <button id="generateLaporan" data-toggle="modal" data-target="#generateModal" class="btn btn-sm btn-neutral">
                         <i class="fas fa-file-pdf"></i>
                         Generate Laporan
                     </button>

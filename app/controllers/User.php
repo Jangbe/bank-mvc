@@ -14,8 +14,13 @@ class User extends Controller{
             'operator' => 'Operator',
             'nasabah' => 'Nasabah'
         ];
+        $badge = [
+            'admin' => 'danger',
+            'operator' => 'primary',
+            'nasabah' => 'info'
+        ];
         $this->view('layouts/header');
-        $this->view('user/index', compact('users', 'level'));
+        $this->view('user/index', compact('users', 'level', 'badge'));
         $this->view('layouts/footer');
     }
 

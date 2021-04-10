@@ -46,9 +46,17 @@
 
 <?php include 'modal_detail.php' ?>
 
+<?php include 'modal_generate.php' ?>
+
 <script>
     document.addEventListener('DOMContentLoaded',function(){
         $('#transaksi').addClass('active');
+
+        $('input[name="dates"]').daterangepicker({
+            opens: 'left',
+            drops: 'auto',
+            format: 'YYYY-MM-DD'
+        });
 
         //validasi input pin harus angka
         $('.pin').on('keydown', function(e){
@@ -83,14 +91,17 @@
                 success: function(result){
                     result = JSON.parse(result);
                     $('#detailTransaksiLabel').text("Detail Transaksi "+result[0].nm_nasabah);
+                    console.log(result[0].no_rekening);
+                    $('#id_nasabah').val(result[0].id_nasabah);
                     $('#detailTransaksiNasabah').DataTable({
                         data: result,
                         destroy: true,
                         "bSort" : false,
                         columns: [
-                            {data: 'waktu'},
+                            {data: 'no_rekening'},
                             {data: 'nominal'},
                             {data: 'jns_transaksi'},
+                            {data: 'waktu'},
                         ],
                         "language": {
                             "oPaginate": {

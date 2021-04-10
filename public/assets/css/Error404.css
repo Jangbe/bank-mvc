@@ -223,4 +223,9 @@ html {
         font-size: 1em;
         text-align: center;
     }
+
+}
+a{
+    text-decoration: none !important;
+    color: red !important;
 }

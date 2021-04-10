@@ -27,7 +27,7 @@
                             <span class="text-muted"><?= ucwords($user['username']) ?></span>
                         </td>
                         <td>
-                            <span class="badge badge-<?php if($user['level'] == 'admin'){echo 'warning';}else if($user['level'] == 'operator'){echo 'primary';}else{echo 'info';} ?>">
+                            <span class="badge badge-<?= $badge[$user['level']] ?>">
                                 <?= $user['level'] ?>
                             </span>
                         </td>
