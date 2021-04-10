@@ -2,7 +2,7 @@
 <div class="modal fade" id="generateModal" tabindex="-1" role="dialog" aria-labelledby="generateModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form action="<?= url('generate') ?>" method="post" id="modalForm">
+            <form action="<?= url('generate') ?>" target="_blank" method="post" id="modalForm">
                 <div class="modal-header">
                     <h5 class="modal-title" id="generateModalLabel">Generate Laporan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

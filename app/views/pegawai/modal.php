@@ -19,8 +19,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="nm_nasabah">Nama Lengkap</label>
-                        <input required type="text" class="form-control" name="nm_nasabah" id="nm_nasabah">
+                        <label for="nm_pegawai">Nama Lengkap</label>
+                        <input required type="text" class="form-control" name="nm_pegawai" id="nm_pegawai">
                     </div>
                     <div class="form-group">
                         <label for="jk">Jenis Kelamin</label>

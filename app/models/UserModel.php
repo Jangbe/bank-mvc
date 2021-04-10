@@ -19,6 +19,12 @@ class UserModel{
         return $this->db->query('SELECT * FROM users WHERE level = "nasabah" ')->get();
     }
 
+    public function getAllUsersPegawai()
+    {
+        return $this->db->query('SELECT * FROM users WHERE level = "operator" ')->get();
+    }
+
+
     public function getUser($id)
     {
         $user = $this->db->where('id_user', $id)->first();

@@ -21,7 +21,7 @@ class NasabahModel{
                  ->binds($post)
                  ->execute();
         setFlash('pesan', 'Nasabah berhasil ditambahkan!');
-        redirect('operator/nasabah');
+        redirect(user('level').'/nasabah');
     }
 
     public function getNasabah($id)
@@ -42,7 +42,7 @@ class NasabahModel{
                                          WHERE id_nasabah=:id")->binds($post)->execute();
                                 
         setFlash('pesan', 'Nasabah Berhasil di Edit');
-        redirect('operator/nasabah');
+        redirect(user('level').'/nasabah');
     }
 
     public function destroy($id)
@@ -50,6 +50,6 @@ class NasabahModel{
         $this->db->query("DELETE FROM nasabah WHERE id_nasabah=:id")->bind('id', $id)->execute();
 
         setFlash('pesan', 'Nasabah berhasil dihapus.');
-        redirect('operator/nasabah');
+        redirect(user('level').'/nasabah');
     }
 }
