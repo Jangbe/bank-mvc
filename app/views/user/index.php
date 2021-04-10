@@ -116,9 +116,10 @@
             $.ajax({
                 url: "<?= url('ajax_user') ?>",
                 method: "post",
-                data: {id_user, id_user},
+                data: {id_user: id_user},
                 success: function(result){
                     result = JSON.parse(result);
+                    console.log(result);
                     $('#username').val(result[0].username);
                     $('#pass').parent().hide();
                     $('#level').val(result[0].level);

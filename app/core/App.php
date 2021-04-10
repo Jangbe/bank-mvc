@@ -32,6 +32,17 @@ class App{
             $this->route('/create',  'Operator@create');
             $this->route('/edit/{id}', 'Operator@edit');
             $this->route('/delete/{id}', 'Operator@delete');
+            $this->prefix('/nasabah', function(){
+                $this->route('/', 'Nasabah@index');
+                $this->route('/create', 'Nasabah@create');
+                $this->route('/edit/{id}', 'Nasabah@update');
+                $this->route('/delete/{id}', 'Nasabah@destroy');
+                });
+                $this->prefix('/transaksi', function(){
+                    $this->route('', 'Transaksi@index');
+                    $this->route('/add', 'Transaksi@add');
+                    $this->route('/detail/{id}', 'Transaksi@detail');
+                });
         });
 
         //Untuk tampilan admin
@@ -62,7 +73,11 @@ class App{
         $this->route('/ajax_user', 'User@show');
         $this->route('/ajax_rekening', 'Rekening@show');
         $this->route('/ajax_transaksi', 'Transaksi@detail');
+<<<<<<< HEAD
         $this->route('/generate', 'Admin@generate');
+=======
+        $this->route('/ajax_nasabah', 'Nasabah@show');
+>>>>>>> d13599c11c4f8aa778adbc26449d3912e1514022
         
         $this->notFound();
     }

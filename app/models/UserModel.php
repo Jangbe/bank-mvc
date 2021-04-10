@@ -14,6 +14,11 @@ class UserModel{
         return $this->db->all();
     }
 
+    public function getAllUsersNasabah()
+    {
+        return $this->db->query('SELECT * FROM users WHERE level = "nasabah" ')->get();
+    }
+
     public function getUser($id)
     {
         $user = $this->db->where('id_user', $id)->first();
