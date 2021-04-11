@@ -29,6 +29,8 @@
   <script src="<?= url() ?>assets/js/argon.js?v=1.2.0"></script>
   <script> 
     $('.table').DataTable({
+      destroy: true,
+      "bSort": false,
       "language": {
         "sEmptyTable":     "Data tidak tersedia di tabel",
         "sInfo":           "Menampilkan"+" _START_ "+"sampai"+" _END_ "+"dari"+" _TOTAL_ "+"baris",

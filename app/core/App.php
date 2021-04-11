@@ -87,7 +87,8 @@ class App{
         $this->route('/generate', 'Admin@generate');
         $this->route('/ajax_nasabah', 'Nasabah@show');
         $this->route('/ajax_pegawai', 'Operator@show');
-        $this->route('/ajax_statistic', 'Admin@statistic');
+        $this->route('/ajax_statistic', 'Operator@statistic');
+        $this->route('/ajax_statistic_bulan', 'Operator@statistic_bulan');
         
         $this->notFound();
     }

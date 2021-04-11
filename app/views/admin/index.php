@@ -101,7 +101,7 @@
             <div class="row align-items-center">
             <div class="col">
                 <h6 class="text-light text-uppercase ls-1 mb-1">Statistik</h6>
-                <h5 class="h3 text-white mb-0">Transaksi Per Hari</h5>
+                <h5 class="h3 text-white mb-0">Transaksi Minggu Ini</h5>
             </div>
             </div>
         </div>
@@ -109,8 +109,7 @@
             <!-- Chart -->
             <div class="chart">
             <!-- Chart wrapper -->
-            <canvas id="my-chart" class="chart-canvas"></canvas>
-            <!-- <canvas id="chart-sales-dark" class="chart-canvas"></canvas> -->
+            <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
             </div>
         </div>
         </div>
@@ -120,8 +119,8 @@
         <div class="card-header bg-transparent">
             <div class="row align-items-center">
             <div class="col">
-                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h5 class="h3 mb-0">Total orders</h5>
+                <h6 class="text-uppercase text-muted ls-1 mb-1">Transaksi</h6>
+                <h5 class="h3 mb-0">Tahun Ini</h5>
             </div>
             </div>
         </div>
@@ -129,6 +128,7 @@
             <!-- Chart -->
             <div class="chart">
             <canvas id="chart-bars" class="chart-canvas"></canvas>
+            <canvas id="my-chart" class="chart-canvas"></canvas>
             </div>
         </div>
         </div>
@@ -139,36 +139,40 @@
         document.addEventListener('DOMContentLoaded', function(){
             $('#dashboard').addClass('active');
 
-            $.ajax({
-                url: "<?= url('ajax_statistic') ?>",
-                success: function(data){
-                    data = JSON.parse(data);
-                    let ctx = $('#my-chart');
-                    let myChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: ['Minggu','Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
-                            datasets: [{
-                                label: "Jumlah Transaksi",
-                                data,
-                                backgroundColor: [
-                                    'rgba(153, 102, 255, 0.2)',
-                                ],
-                                borderColor: [
-                                    'rgba(54, 162, 235, 1)',
-                                ],
-                                borderWidth: 4
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                }
-            });
+            // $.ajax({
+            //     url: "http://localhost/bank-mvc/public/ajax_statistic",
+            //     success: function(result){
+            //         result = JSON.parse(result);
+            //         let ctx = $('#my-chart');
+            //         let myChart = new Chart(ctx, {
+            //             type: 'line',
+            //             data: {
+            //                 labels: result.days,
+            //                 datasets: [{
+            //                     label: "Jumlah Transaksi",
+            //                     data:result.statis,
+            //                     backgroundColor: [
+            //                         'rgba(153, 102, 255, 0.2)',
+            //                     ],
+            //                     borderColor: [
+            //                         'rgba(54, 162, 235, 1)',
+            //                     ],
+            //                     borderWidth: 4
+            //                 }]
+            //             },
+            //             options: {
+            //                 scales: {
+            //                     y: {
+            //                         beginAtZero: true
+            //                     }
+            //                 }
+            //             }
+            //         });
+
+            //         // Save to jQuery object
+
+            //         $chart.data('chart', myChart);
+            //     }
+            // });
         });
     </script>

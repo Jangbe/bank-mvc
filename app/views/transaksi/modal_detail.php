@@ -26,6 +26,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <label>Pilih Tanggal Generate Laporan</label>
                     <input type="text" name="dates" class="form-control col-3">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Generate Transaksi Ini</button>

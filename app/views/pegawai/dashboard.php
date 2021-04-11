@@ -101,8 +101,8 @@
         <div class="card-header bg-transparent">
             <div class="row align-items-center">
             <div class="col">
-                <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                <h5 class="h3 text-white mb-0">Sales value</h5>
+                <h6 class="text-light text-uppercase ls-1 mb-1">Statistik</h6>
+                <h5 class="h3 text-white mb-0">Transaksi Minggu Ini</h5>
             </div>
             </div>
         </div>

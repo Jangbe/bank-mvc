@@ -838,20 +838,26 @@ var BarsChart = (function() {
 	// Init chart
 	function initChart($chart) {
 
-		// Create chart
-		var ordersChart = new Chart($chart, {
-			type: 'bar',
-			data: {
-				labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-				datasets: [{
-					label: 'Sales',
-					data: [25, 20, 30, 22, 17, 29]
-				}]
+		$.ajax({
+			url: "http://localhost/bank-mvc/public/ajax_statistic_bulan",
+			success: function(result){
+				result = JSON.parse(result);
+				// Create chart
+				var ordersChart = new Chart($chart, {
+					type: 'bar',
+					data: {
+						labels: result.month,
+						datasets: [{
+							label: 'Sales',
+							data: result.statis
+						}]
+					}
+				});
+
+				// Save to jQuery object
+				$chart.data('chart', ordersChart);
 			}
 		});
-
-		// Save to jQuery object
-		$chart.data('chart', ordersChart);
 	}
 
 
@@ -878,55 +884,86 @@ var SalesChart = (function() {
   // Methods
 
   function init($chart) {
+	$.ajax({
+		url: "http://localhost/bank-mvc/public/ajax_statistic",
+		success: function(result){
+			result = JSON.parse(result);
+			let ctx = $chart;
+			let myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: result.days,
+					datasets: [{
+						label: "Jumlah Transaksi",
+						data:result.statis,
+						backgroundColor: [
+							'rgba(153, 102, 255, 0.2)',
+						],
+						borderColor: [
+							'rgba(54, 162, 235, 1)',
+						],
+						borderWidth: 4
+					}]
+				},
+				options: {
+					scales: {
+						y: {
+							beginAtZero: true
+						}
+					}
+				}
+			});
 
-    var salesChart = new Chart($chart, {
-      type: 'line',
-      options: {
-        scales: {
-          yAxes: [{
-            gridLines: {
-              lineWidth: 1,
-              color: Charts.colors.gray[900],
-              zeroLineColor: Charts.colors.gray[900]
-            },
-            ticks: {
-              callback: function(value) {
-                if (!(value % 10)) {
-                  return '$' + value + 'k';
-                }
-              }
-            }
-          }]
-        },
-        tooltips: {
-          callbacks: {
-            label: function(item, data) {
-              var label = data.datasets[item.datasetIndex].label || '';
-              var yLabel = item.yLabel;
-              var content = '';
+			// Save to jQuery object
 
-              if (data.datasets.length > 1) {
-                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
-              }
+			$chart.data('chart', myChart);
+		}
+	});
 
-              content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
-              return content;
-            }
-          }
-        }
-      },
-      data: {
-        labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-          label: 'Performance',
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
-        }]
-      }
-    });
+    // var salesChart = new Chart($chart, {
+    //   type: 'line',
+    //   options: {
+    //     scales: {
+    //       yAxes: [{
+    //         gridLines: {
+    //           lineWidth: 1,
+    //           color: Charts.colors.gray[900],
+    //           zeroLineColor: Charts.colors.gray[900]
+    //         },
+    //         ticks: {
+    //           callback: function(value) {
+    //             if (!(value % 10)) {
+    //               return '$' + value + 'k';
+    //             }
+    //           }
+    //         }
+    //       }]
+    //     },
+    //     tooltips: {
+    //       callbacks: {
+    //         label: function(item, data) {
+    //           var label = data.datasets[item.datasetIndex].label || '';
+    //           var yLabel = item.yLabel;
+    //           var content = '';
 
-    // Save to jQuery object
+    //           if (data.datasets.length > 1) {
+    //             content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+    //           }
 
-    $chart.data('chart', salesChart);
+    //           content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
+    //           return content;
+    //         }
+    //       }
+    //     }
+    //   },
+    //   data: {
+    //     labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    //     datasets: [{
+    //       label: 'Performance',
+    //       data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
+    //     }]
+    //   }
+    // });
 
   };
 

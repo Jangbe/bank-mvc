@@ -1,6 +1,6 @@
 <!-- Modal Detail -->
 <div class="modal fade" id="generateModal" tabindex="-1" role="dialog" aria-labelledby="generateModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form action="<?= url('generate') ?>" target="_blank" method="post" id="modalForm">
                 <div class="modal-header">
@@ -10,10 +10,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+                    <div class="form-group">
+                        <label for="date">Pilih Tanggal</label>
+                        <input type="text" id="date" name="dates" class="form-control ">
+                    </div>
+                    <div class="form-group">
+                        <label for="nasabah">Pilih Nasabah</label>
+                        <select name="nasabah" id="nasabah" class="custom-select">
+                            <option value="semua">Semua</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="text" name="dates" class="form-control col-3">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Generate Transaksi Ini</button>
                 </div>

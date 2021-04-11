@@ -113,6 +113,7 @@
             $('#transfer').addClass('active');
 
             $('#logTransaksi').DataTable({
+                destroy: true,
                 "language": {
                     "oPaginate": {
                         "sNext": "<i class='ni ni-bold-right'></i>",
