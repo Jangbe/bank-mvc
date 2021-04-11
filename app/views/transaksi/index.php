@@ -58,6 +58,8 @@
             format: 'YYYY-MM-DD'
         });
 
+        $('.select2').select2();
+
         //validasi input pin harus angka
         $('.pin').on('keydown', function(e){
             if(e.key.length === 1 && e.key.match(/[a-z]/i)){

@@ -12,7 +12,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="norek">No Rekening</label>
-                        <input type="text" id="norek" class="form-control pin" name="norek">
+                        <select name="norek" id="norek" class="custom-select select2">
+                            <option value=""></option>
+                            <?php foreach($rekening as $rek) : ?>
+                            <option value="<?= $rek['no_rekening'] ?>"><b><?= $rek['no_rekening'] ?></b> --<?= $rek['nm_nasabah'] ?>--</option>
+                            <?php endforeach ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="pin">PIN Rekening</label>
@@ -33,7 +38,12 @@
                     <div id="tf">
                         <div class="form-group">
                             <label for="no_tf">No Rekening Transfer</label>
-                            <input type="text" id="no_tf" class="form-control pin" name="no_tf">
+                            <select name="no_tf" id="no_tf" class="custom-select select2">
+                                <option value=""></option>
+                                <?php foreach($rekening as $rek) : ?>
+                                <option value="<?= $rek['no_rekening'] ?>"><b><?= $rek['no_rekening'] ?></b> --<?= $rek['nm_nasabah'] ?>--</option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="jns_pembayaran">Jenis Pembayaran</label>

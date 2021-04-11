@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?= url() ?>assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="<?= url() ?>assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <link rel="stylesheet" href="<?= url() ?>assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="<?= url() ?>assets/vendor/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="<?= url() ?>assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= url() ?>assets/css/daterangepicker.css" type="text/css">
   <!-- Page plugins -->

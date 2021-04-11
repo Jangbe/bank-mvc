@@ -52,4 +52,14 @@ class NasabahModel{
         setFlash('pesan', 'Nasabah berhasil dihapus.');
         redirect(user('level').'/nasabah');
     }
+
+    public function getTransaksiNasabah()
+    {
+        $id_user = user('id_user');
+        $nasabah = $this->db->query("SELECT * FROM nasabah WHERE id_user='$id_user'")->first();
+        return $this->db->query("SELECT * FROM transaksi
+                                 JOIN rekening ON transaksi.no_rekening=rekening.no_rekening
+                                 JOIN nasabah ON rekening.id_nasabah=nasabah.id_nasabah
+                                 WHERE nasabah.id_nasabah='$nasabah[id_nasabah]'")->get();
+    }
 }

@@ -36,6 +36,10 @@ class TransaksiModel{
 
     public function addTransaksi($post)
     {
+        if($post['norek'] == $post['no_tf']){
+            setFlash('pesan', 'No Rekening Yang Dituju tidak boleh sama!', 'danger');
+            redirect(user('level').'/transaksi');
+        }
         $saldo = $this->db->query("SELECT * FROM rekening JOIN saldo ON saldo.no_rekening=rekening.no_rekening WHERE rekening.no_rekening=:norek")->bind('norek', $post['norek'])->first();
         if($post['jns_transaksi'] == 'tarik' || $post['jns_transaksi'] == 'tf'){
             if($saldo['saldo'] < $post['nominal']){

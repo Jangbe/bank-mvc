@@ -1,13 +1,28 @@
 <?php
 
 class Operator extends Controller{
+    private $db;
+    
     public function __construct()
     {
-        $this->middleware(['admin']);
+        $this->db = new Database;
     }
-
+    
+    public function dashboard()
+    {
+        $users = count($this->model('UserModel')->getAllUsers());
+        $nasabah = count($this->model('NasabahModel')->getAllNasabah());
+        $operator = count($this->db->query('SELECT * FROM pegawai')->get());
+        $transaksi = count($this->db->query('SELECT * FROM transaksi')->get());
+        $this->middleware(['admin', 'operator']);
+        $this->view('layouts/header');
+        $this->view('pegawai/dashboard', compact('users','nasabah','operator','transaksi'));
+        $this->view('layouts/footer');
+    }
+    
     public function index()
     {
+        $this->middleware(['admin']);
         $users = $this->model('UserModel')->getAllUsersPegawai();
         $operator = $this->model('OperatorModel')->getAllOperator();
         $this->view('layouts/header');

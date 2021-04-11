@@ -20,12 +20,34 @@
   <script src="<?= url() ?>assets/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="<?= url() ?>assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <script src="<?= url() ?>assets/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="<?= url() ?>assets/vendor/select2/dist/js/select2.full.min.js"></script>
   <script src="<?= url() ?>assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="<?= url() ?>assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?= url() ?>assets/js/moment.js"></script>
   <script src="<?= url() ?>assets/js/daterangepicker.js"></script>
   <!-- Argon JS -->
   <script src="<?= url() ?>assets/js/argon.js?v=1.2.0"></script>
+  <script> 
+    $('.table').DataTable({
+      "language": {
+        "sEmptyTable":     "Data tidak tersedia di tabel",
+        "sInfo":           "Menampilkan"+" _START_ "+"sampai"+" _END_ "+"dari"+" _TOTAL_ "+"baris",
+        "sInfoEmpty":      "Menampilkan"+" 0 "+"sampai"+" 0 "+"dari"+" 0 "+"baris",
+        "sInfoFiltered":   "("+"tersaring"+" "+"dari"+" _MAX_ "+"total"+" "+"baris"+")",
+        "sInfoPostFix":    "",
+        "sInfoThousands":  ".",
+        "sLengthMenu":     "Tampilkan"+" _MENU_ "+"baris",
+        "sLoadingRecords": "Tunggu...",
+        "sProcessing":     "Sedang memproses...",
+        "sSearch":         "Cari"+":",
+        "sZeroRecords":    "Data tidak cocok",
+        "oPaginate": {
+            "sNext": "<i class='ni ni-bold-right'></i>",
+            "sPrevious": "<i class='ni ni-bold-left'></i>"
+        }
+      }
+    });
+  </script>
   <?php getFlash('pesan', function($msg){ ?>
       <script>
         Swal.fire({

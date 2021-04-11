@@ -15,7 +15,6 @@
                     <th width="2%">No</th>
                     <th width="70%">Nama</th>
                     <th>Jenis Kelamin</th>
-                    <th>No HP</th>
                     <th>Email</th>
                     <th>Alamat</th>
                     <th>Aksi</th>
@@ -33,9 +32,6 @@
                                 <span class="badge badge-<?= $nsbh['jk'] == 'L'? 'primary' : 'warning' ?>">
                                     <?= $nsbh['jk'] == 'L'? 'Laki-laki' : 'Perempuan'  ?>
                                 </span>
-                            </td>
-                            <td>
-                                <span class="text-muted"><?= ucwords($nsbh['no_hp']) ?></span>
                             </td>
                             <td>
                                 <span class="text-muted"><?= ucwords($nsbh['email']) ?></span>
