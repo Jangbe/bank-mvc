@@ -12,6 +12,7 @@ class Database{
 
     public function __construct($table = null)
     {
+        $this->table = $table;
         $dsn = "mysql:host=$this->host; dbname=$this->db";
 
         $options = [
@@ -29,11 +30,13 @@ class Database{
 
     public function query($query){
         $this->stmt = $this->dbh->prepare($query);
+        return $this;
     }
 
     public function execute()
     {
         $this->stmt->execute();
+        return $this;
     }
 
     public function bind($key, $value, $type = null)
@@ -46,7 +49,7 @@ class Database{
                 case is_bool($value):
                     $type = PDO::PARAM_BOOL;
                     break;
-                case is_numeric($value):
+                case is_int($value):
                     $type = PDO::PARAM_INT;
                     break;
                 default:
@@ -54,6 +57,43 @@ class Database{
             }
         }
         $this->stmt->bindValue($key, $value, $type);
+        return $this;
+    }
+
+    public function binds(Array $value)
+    {
+        foreach($value as $k => $v){
+            $this->bind($k, $v);
+        }
+        return $this;
+    }
+
+    public function where($column, $where)
+    {
+        if(!empty($this->table)){
+            if(is_array($column)){
+                foreach($column as $k => $v){
+                    $row[] = $k.' = :'.$k;
+                    $this->bind($k, $v);
+                }
+                $row = implode(' AND ', $row);
+                $this->stmt = $this->query("SELECT * FROM ".$this->table." WHERE $row");
+            }else{
+                $key = ':'.$column;
+                $this->query("SELECT * FROM $this->table WHERE `$column`=:$column")->bind($column, $where);
+            }
+            return $this;
+        }
+        return false;
+    }
+
+    public function all()
+    {
+        if(!empty($this->table)){
+            $this->stmt = $this->dbh->prepare("SELECT * FROM ".$this->table);
+            return $this->get();
+        }
+        return false;
     }
 
     public function first(){
@@ -64,5 +104,10 @@ class Database{
     public function get(){
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function lastInsertId()
+    {
+        return $this->dbh->lastInsertId();
     }
 }
