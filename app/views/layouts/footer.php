@@ -28,7 +28,7 @@
   <!-- Argon JS -->
   <script src="<?= url() ?>assets/js/argon.js?v=1.2.0"></script>
   <script> 
-    $('.table').DataTable({
+    var table = $('.table').DataTable({
       destroy: true,
       "bSort": false,
       "language": {
@@ -48,6 +48,9 @@
             "sPrevious": "<i class='ni ni-bold-left'></i>"
         }
       }
+    });
+    $('#search').keyup(function(){
+      table.search($(this).val()).draw();
     });
   </script>
   <?php getFlash('pesan', function($msg){ ?>

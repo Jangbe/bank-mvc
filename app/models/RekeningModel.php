@@ -10,7 +10,10 @@ class RekeningModel{
 
     public function getAllRekening()
     {
-        $rekening = $this->db->query("SELECT * FROM rekening JOIN nasabah ON nasabah.id_nasabah = rekening.id_nasabah JOIN saldo ON saldo.no_rekening=rekening.no_rekening")->get();
+        $rekening = $this->db->query("SELECT * FROM rekening
+                                      JOIN nasabah ON nasabah.id_nasabah = rekening.id_nasabah
+                                      JOIN saldo ON saldo.no_rekening=rekening.no_rekening
+                                      JOIN users ON nasabah.id_user=users.id_user")->get();
         return $rekening;
     }
 

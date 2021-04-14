@@ -18,6 +18,12 @@ class App{
             $this->route('/logout', 'Auth@logout');
         });
 
+        $this->prefix('/profile', function(){
+            $this->route('/', 'Auth@profile');
+            $this->route('/edit-profile', 'Auth@edit');
+            $this->route('/ganti-sandi', 'Auth@change');
+        });
+
         //Untuk tampilan nasabah
         $this->prefix('/nasabah', function(){
             $this->route('', 'Nasabah@dashboard');
@@ -41,6 +47,11 @@ class App{
                     $this->route('/create', 'Rekening@create');
                     $this->route('/edit/{norek}', 'Rekening@edit');
                     $this->route('/delete/{norek}', 'Rekening@destroy');
+                });
+                $this->prefix('/transaksi', function(){
+                    $this->route('', 'Transaksi@index');
+                    $this->route('/add', 'Transaksi@add');
+                    $this->route('/detail/{id}', 'Transaksi@detail');
                 });
         });
 
@@ -89,6 +100,7 @@ class App{
         $this->route('/ajax_pegawai', 'Operator@show');
         $this->route('/ajax_statistic', 'Operator@statistic');
         $this->route('/ajax_statistic_bulan', 'Operator@statistic_bulan');
+        $this->route('/ajax_statistic_nasabah', 'Nasabah@statistic');
         
         $this->notFound();
     }

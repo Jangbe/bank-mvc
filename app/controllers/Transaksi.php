@@ -4,12 +4,8 @@ class Transaksi extends Controller{
     public function index()
     {
         $transaksi = $this->model('TransaksiModel')->getAllTransaksi();
-        $sql = "SELECT * FROM rekening 
-                JOIN saldo ON rekening.no_rekening=saldo.no_rekening
-                JOIN nasabah ON rekening.id_nasabah=nasabah.id_nasabah
-                JOIN users ON nasabah.id_user=users.id_user";
-        $db = new Database;
-        $rekening = $db->query($sql)->get();
+        // var_dump($transaksi);die;
+        $rekening = $this->model('RekeningModel')->getAllRekening();
         $this->view('layouts/header');
         $this->view('transaksi/index', compact('transaksi','rekening'));
         $this->view('layouts/footer');
@@ -19,6 +15,9 @@ class Transaksi extends Controller{
     {
         if(!empty($_POST)){
             $transaksi = $this->model('TransaksiModel')->getTransaksiByIdNasabah($_POST['id']);
+            foreach ($transaksi as $key => $value) {
+                $transaksi[$key]['nominal'] = rupiah($value['nominal']);
+            }
             echo json_encode($transaksi);
         }else{
             abort(403);

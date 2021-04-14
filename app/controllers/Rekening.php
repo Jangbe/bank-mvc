@@ -25,6 +25,12 @@ class Rekening extends Controller{
     public function create()
     {
         if(!empty($_POST)){
+            if($_POST['norek'] == '' || 
+                $_POST['pin'] == '' || 
+                $_POST['id_nasabah'] == ''){
+                setFlash('pesan', 'Data Tidak Lengkap', 'danger');
+                back();
+            }
             $this->model('RekeningModel')->createRekening($_POST);
         }else{
             abort(403);
@@ -34,6 +40,13 @@ class Rekening extends Controller{
     public function edit($norek)
     {
         if(!empty($_POST)){
+            if($_POST['norek'] == '' || 
+                $_POST['pin_old'] == '' || 
+                $_POST['pin_new'] == '' || 
+                $_POST['id_nasabah'] == ''){
+                setFlash('pesan', 'Data Tidak Lengkap', 'danger');
+                back();
+            }
             $this->model('RekeningModel')->editRekening($norek, $_POST);
         }else{
             abort(403);

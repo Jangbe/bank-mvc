@@ -22,6 +22,43 @@ class Auth extends Controller{
         }
     }
 
+    public function profile()
+    {
+        $nama = explode(' ', level('nama'));
+        $nama_awal = $nama[0];
+        unset($nama[0]);
+        $nama_akhir = implode(' ', $nama);
+        $this->view('layouts/header');
+        $this->view('user/profile', compact('nama_awal', 'nama_akhir'));
+        $this->view('layouts/footer');
+    }
+
+    public function edit()
+    {
+        if(!empty($_POST)){
+            if($_POST['username'] == '' || 
+                $_POST['first_name'] == '' || 
+                $_POST['no_hp'] == '' || 
+                $_POST['email'] == '' ||
+                $_POST['alamat'] == ''){
+                setFlash('pesan', 'Data Tidak Lengkap', 'danger');
+                redirect('operator/nasabah');
+            }
+            $this->model('AuthModel')->edit($_POST);
+        }else{
+            abort(403);
+        }
+    }
+
+    public function change()
+    {
+        if(!empty($_POST)){
+            $this->model('AuthModel')->change($_POST);
+        }else{
+            abort(403);
+        }        
+    }
+
     public function logout()
     {
         if(isset($_SESSION['user'])){

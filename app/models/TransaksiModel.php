@@ -9,11 +9,15 @@ class TransaksiModel{
 
     public function getAllTransaksi()
     {
-        $transaksi = $this->db->query("SELECT *, count(*) AS jml FROM transaksi
-                                       JOIN rekening ON transaksi.no_rekening = rekening.no_rekening
-                                       JOIN nasabah ON rekening.id_nasabah = nasabah.id_nasabah
-                                       GROUP BY nasabah.nm_nasabah")->get();
-        return $transaksi;
+        $nasabah = $this->db->query("SELECT * FROM nasabah")->get();
+        foreach($nasabah as $i => $nsbh){
+            $nasabah[$i]['rekening'] = $this->db->query("SELECT count(*) as jumlah FROM rekening WHERE id_nasabah='$nsbh[id_nasabah]'")->first();
+            $nasabah[$i]['transaksi'] = $this->db->query("SELECT count(*) as jumlah FROM transaksi
+                                                          JOIN rekening ON transaksi.no_rekening=rekening.no_rekening
+                                                          JOIN nasabah ON nasabah.id_nasabah=rekening.id_nasabah
+                                                          WHERE nasabah.id_nasabah='$nsbh[id_nasabah]'")->first();
+        }
+        return $nasabah;
     }
 
     public function getTransaksiByIdNasabah($id)
@@ -21,7 +25,7 @@ class TransaksiModel{
         $transaksi = $this->db->query("SELECT * FROM transaksi
                                        JOIN rekening ON transaksi.no_rekening = rekening.no_rekening
                                        JOIN nasabah ON rekening.id_nasabah = nasabah.id_nasabah
-                                       WHERE nasabah.id_nasabah=:id")
+                                       WHERE nasabah.id_nasabah=:id ORDER BY id_transaksi DESC")
                                        ->bind('id', $id)->get();
         foreach($transaksi as $k => $v){
             if($v['jns_transaksi'] == 'tf'){
@@ -38,19 +42,19 @@ class TransaksiModel{
     {
         if($post['norek'] == $post['no_tf']){
             setFlash('pesan', 'No Rekening Yang Dituju tidak boleh sama!', 'danger');
-            redirect(user('level').'/transaksi');
+            back();
         }
         $saldo = $this->db->query("SELECT * FROM rekening JOIN saldo ON saldo.no_rekening=rekening.no_rekening WHERE rekening.no_rekening=:norek")->bind('norek', $post['norek'])->first();
         if($post['jns_transaksi'] == 'tarik' || $post['jns_transaksi'] == 'tf'){
             if($saldo['saldo'] < $post['nominal']){
                 setFlash('pesan', 'Saldo tidak cukup!', 'danger');
-                redirect(user('level').'/transaksi');
+                back();
             }
         }
 
         if($post['pin'] != $saldo['pin']){
             setFlash('pesan', 'PIN Tidak Cocok!', 'danger');
-            redirect(user('level').'/transaksi');
+            back();
         }
 
         $this->db->query("INSERT INTO transaksi (waktu, nominal, jns_transaksi, no_rekening)
@@ -72,6 +76,6 @@ class TransaksiModel{
         }
 
         setFlash('pesan', 'Transaksi berhasil dibuat.');
-        redirect(user('level').'/transaksi');
+        back();
     }
 }

@@ -42,7 +42,7 @@
                                 <tr>
                                     <td><?= $i ?></td>
                                     <td class="text-danger"><?= $tr['no_rekening'] ?></td>
-                                    <td class="text-center font-weight-bold">Rp. <?= number_format($tr['nominal'], 0, ',', '.') ?>,00</td>
+                                    <td class="text-center font-weight-bold"><?= rupiah($tr['nominal']) ?></td>
                                     <td class="text-success"><?= $tr['jns_transaksi']=='tf'?'Transfer':ucwords($tr['jns_transaksi']) ?></td>
                                     <td class="text-warning"><?= date('d M Y',strtotime($tr['waktu'])) ?></td>
                                 </tr>
@@ -111,16 +111,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function(){
             $('#transfer').addClass('active');
-
-            $('#logTransaksi').DataTable({
-                destroy: true,
-                "language": {
-                    "oPaginate": {
-                        "sNext": "<i class='ni ni-bold-right'></i>",
-                        "sPrevious": "<i class='ni ni-bold-left'></i>"
-                    }
-                }
-            });
 
             $('#norek_transfer').select2();
 

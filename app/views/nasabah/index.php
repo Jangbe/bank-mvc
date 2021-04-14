@@ -4,58 +4,60 @@
     <div class="row">
         <div class="col">
             <div class="card">
-            <!-- Card header -->
-            <div class="card-header border-0">
-                <h3 class="mb-0">Daftar Nasabah</h3>
-            </div>
-            <!-- Light table -->
-            <div class="table-responsive">
-                <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                    <th width="2%">No</th>
-                    <th width="70%">Nama</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Email</th>
-                    <th>Alamat</th>
-                    <th>Aksi</th>
-                </thead>
-                <tbody class="list">
-                    <?php $i=0; foreach($nasabah as $nsbh): $i++ ?>
-                        <tr>
-                            <td>
-                                <b><?= $i ?></b>
-                            </td>
-                            <td>
-                                <span class="text-muted"><?= ucwords($nsbh['nm_nasabah']) ?></span>
-                            </td>
-                            <td>
-                                <span class="badge badge-<?= $nsbh['jk'] == 'L'? 'primary' : 'warning' ?>">
-                                    <?= $nsbh['jk'] == 'L'? 'Laki-laki' : 'Perempuan'  ?>
-                                </span>
-                            </td>
-                            <td>
-                                <span class="text-muted"><?= ucwords($nsbh['email']) ?></span>
-                            </td>
-                            <td>
-                                <span class="text-muted"><?= ucwords($nsbh['alamat']) ?></span>
-                            </td>
-                            <td>
-                                <button class="btn btn-success edit-nasabah" data-id="<?= $nsbh['id_nasabah']; ?>">
-                                    <i class="fas fa-edit"></i>
-                                    <span class="d-none d-md-inline">Edit</span>
-                                </button> 
-                                <form style="display: inline" action="<?= url('operator/nasabah/delete/').$nsbh['id_nasabah'] ?>" method="post">
-                                    <button type="button" class="btn btn-danger delete-nasabah" data-id="<?= $nsbh['id_nasabah']; ?>">
-                                        <i class="fas fa-trash"></i>
-                                        <span class="d-none d-md-inline">Hapus</span>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-                </table>
-            </div>
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0">Daftar Nasabah</h3>
+                </div>
+                <div class="card-body mx--4">
+                    <!-- Light table -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <th width="2%">No</th>
+                            <th width="70%">Nama</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Email</th>
+                            <th>Alamat</th>
+                            <th>Aksi</th>
+                        </thead>
+                        <tbody class="list">
+                            <?php $i=0; foreach($nasabah as $nsbh): $i++ ?>
+                                <tr>
+                                    <td>
+                                        <b><?= $i ?></b>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted"><?= ucwords($nsbh['nm_nasabah']) ?></span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-<?= $nsbh['jk'] == 'L'? 'primary' : 'warning' ?>">
+                                            <?= $nsbh['jk'] == 'L'? 'Laki-laki' : 'Perempuan'  ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted"><?= ucwords($nsbh['email']) ?></span>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted"><?= ucwords($nsbh['alamat']) ?></span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success edit-nasabah" data-id="<?= $nsbh['id_nasabah']; ?>">
+                                            <i class="fas fa-edit"></i>
+                                            <span class="d-none d-md-inline">Edit</span>
+                                        </button> 
+                                        <form style="display: inline" action="<?= url('operator/nasabah/delete/').$nsbh['id_nasabah'] ?>" method="post">
+                                            <button type="button" class="btn btn-danger delete-nasabah" data-id="<?= $nsbh['id_nasabah']; ?>">
+                                                <i class="fas fa-trash"></i>
+                                                <span class="d-none d-md-inline">Hapus</span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -49,7 +49,7 @@ class Database{
                 case is_bool($value):
                     $type = PDO::PARAM_BOOL;
                     break;
-                case is_numeric($value):
+                case is_int($value):
                     $type = PDO::PARAM_INT;
                     break;
                 default:

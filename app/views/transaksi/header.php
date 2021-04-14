@@ -13,10 +13,12 @@
                     </nav>
                 </div>
                 <div class="col-lg-6 col-5 text-right">
+                    <?php if(user('level') == 'admin') : ?>
                     <button id="generateLaporan" data-toggle="modal" data-target="#generateModal" class="btn btn-sm btn-neutral">
                         <i class="fas fa-file-pdf"></i>
                         Generate Laporan
                     </button>
+                    <?php endif ?>
                     <button id="buatRekening" class="btn btn-sm btn-neutral">
                         <i class="fas fa-plus"></i>
                         Buat Baru

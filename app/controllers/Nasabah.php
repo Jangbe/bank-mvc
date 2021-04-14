@@ -26,6 +26,36 @@ class Nasabah extends Controller{
         $this->view('layouts/footer');
     }
 
+    public function statistic()
+    {
+        $id = $_POST['id_nasabah'];
+        $db = new Database;
+        //index ke      1  ,  2  ,   3  ,   4  ,   5  ,   6  ,   7  ,   8  ,   9  ,  10  ,  11  ,  12  
+        $hari = [];
+        $data['statis'] = [];
+        for($i=1;$i<=date('t');$i++){
+            $hari[] = $i;
+            $data['statis'][] = 0;
+        }
+        $day_now = date('j');
+        $bulan = date('m');
+        $transaksi = $db->query("SELECT
+                                    DATE_FORMAT(waktu, '%d-%m-%Y') AS tanggal,
+                                    DATE_FORMAT(waktu, '%e') AS hari,
+                                    DATE_FORMAT(waktu, '%c') AS bulan,
+                                    COUNT(*) AS jumlah
+                                 FROM transaksi
+                                    JOIN rekening ON transaksi.no_rekening=rekening.no_rekening
+                                    JOIN nasabah ON nasabah.id_nasabah=rekening.id_nasabah
+                                 WHERE MONTH(waktu)=$bulan AND nasabah.id_nasabah='$id' GROUP BY hari ORDER BY waktu")->get();
+        
+        foreach($transaksi as $tr){
+            $data['statis'][$tr['hari']-1] = intval($tr['jumlah']);
+        }
+        $data['days'] = $hari;
+        echo json_encode($data);
+    }
+
     public function index()
     {
         if(!empty($_POST)){

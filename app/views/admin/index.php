@@ -138,41 +138,5 @@
     <script>
         document.addEventListener('DOMContentLoaded', function(){
             $('#dashboard').addClass('active');
-
-            // $.ajax({
-            //     url: "http://localhost/bank-mvc/public/ajax_statistic",
-            //     success: function(result){
-            //         result = JSON.parse(result);
-            //         let ctx = $('#my-chart');
-            //         let myChart = new Chart(ctx, {
-            //             type: 'line',
-            //             data: {
-            //                 labels: result.days,
-            //                 datasets: [{
-            //                     label: "Jumlah Transaksi",
-            //                     data:result.statis,
-            //                     backgroundColor: [
-            //                         'rgba(153, 102, 255, 0.2)',
-            //                     ],
-            //                     borderColor: [
-            //                         'rgba(54, 162, 235, 1)',
-            //                     ],
-            //                     borderWidth: 4
-            //                 }]
-            //             },
-            //             options: {
-            //                 scales: {
-            //                     y: {
-            //                         beginAtZero: true
-            //                     }
-            //                 }
-            //             }
-            //         });
-
-            //         // Save to jQuery object
-
-            //         $chart.data('chart', myChart);
-            //     }
-            // });
         });
     </script>

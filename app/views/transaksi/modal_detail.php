@@ -24,10 +24,21 @@
                             </tbody>
                         </table>
                     </div>
+                    <?php if(user('level') == 'admin') : ?>
+                    <hr>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" name="all" id="all" checked="true" class="form-check-input">
+                            <label for="all" class="form-check-label">Pilih Semua Transaksi</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-muted" id="pilih-tanggal">Pilih Tanggal Generate Laporan</label>
+                        <input disabled type="text" id="date-detail" name="dates" class="form-control">
+                    </div>
+                    <?php endif ?>
                 </div>
                 <div class="modal-footer">
-                    <label>Pilih Tanggal Generate Laporan</label>
-                    <input type="text" name="dates" class="form-control col-3">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Generate Transaksi Ini</button>
                 </div>

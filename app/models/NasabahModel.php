@@ -21,7 +21,7 @@ class NasabahModel{
                  ->binds($post)
                  ->execute();
         setFlash('pesan', 'Nasabah berhasil ditambahkan!');
-        redirect(user('level').'/nasabah');
+        back();
     }
 
     public function getNasabah($id)
@@ -31,7 +31,6 @@ class NasabahModel{
 
     public function editNasabah($post, $id)
     {
-        // var_dump($post, $id);die;
         unset($post['id_user']);
         $post['id'] = $id;
         $this->db->query("UPDATE nasabah SET nm_nasabah=:nm_nasabah,
@@ -42,7 +41,7 @@ class NasabahModel{
                                          WHERE id_nasabah=:id")->binds($post)->execute();
                                 
         setFlash('pesan', 'Nasabah Berhasil di Edit');
-        redirect(user('level').'/nasabah');
+        back();
     }
 
     public function destroy($id)
@@ -50,7 +49,7 @@ class NasabahModel{
         $this->db->query("DELETE FROM nasabah WHERE id_nasabah=:id")->bind('id', $id)->execute();
 
         setFlash('pesan', 'Nasabah berhasil dihapus.');
-        redirect(user('level').'/nasabah');
+        back();
     }
 
     public function getTransaksiNasabah()
@@ -60,6 +59,6 @@ class NasabahModel{
         return $this->db->query("SELECT * FROM transaksi
                                  JOIN rekening ON transaksi.no_rekening=rekening.no_rekening
                                  JOIN nasabah ON rekening.id_nasabah=nasabah.id_nasabah
-                                 WHERE nasabah.id_nasabah='$nasabah[id_nasabah]'")->get();
+                                 WHERE nasabah.id_nasabah='$nasabah[id_nasabah]' ORDER BY transaksi.id_transaksi DESC")->get();
     }
 }

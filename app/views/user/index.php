@@ -8,45 +8,47 @@
                 <div class="card-header border-0">
                     <h3 class="mb-0">Daftar User</h3>
                 </div>
-                <!-- Light table -->
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                        <th width="2%">No</th>
-                        <th width="70%">Username</th>
-                        <th>Level</th>
-                        <th>Aksi</th>
-                    </thead>
-                    <tbody class="list">
-                        <?php $i=0; foreach($users as $user): $i++ ?>
-                            <tr>
-                                <td>
-                                    <b><?= $i ?></b>
-                                </td>
-                                <td>
-                                    <span class="text-muted"><?= ucwords($user['username']) ?></span>
-                                </td>
-                                <td>
-                                    <span class="badge badge-<?= $badge[$user['level']] ?>">
-                                        <?= $user['level'] ?>
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-success edit-user" data-id="<?= $user['id_user']; ?>">
-                                        <i class="fas fa-edit"></i>
-                                        <span class="d-none d-md-inline">Edit</span>
-                                    </button> 
-                                    <form style="display: inline" action="<?= url('admin/user/delete/').$user['id_user'] ?>" method="post">
-                                        <button type="button" class="btn btn-danger delete-user" data-id="<?= $user['id_user']; ?>">
-                                            <i class="fas fa-trash"></i>
-                                            <span class="d-none d-md-inline">Hapus</span>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                    </table>
+                <div class="card-body mx--4">
+                    <!-- Light table -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <th width="2%">No</th>
+                            <th width="70%">Username</th>
+                            <th>Level</th>
+                            <th>Aksi</th>
+                        </thead>
+                        <tbody class="list">
+                            <?php $i=0; foreach($users as $user): $i++ ?>
+                                <tr>
+                                    <td>
+                                        <b><?= $i ?></b>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted"><?= ucwords($user['username']) ?></span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-<?= $badge[$user['level']] ?>">
+                                            <?= $user['level'] ?>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success edit-user" data-id="<?= $user['id_user']; ?>">
+                                            <i class="fas fa-edit"></i>
+                                            <span class="d-none d-md-inline">Edit</span>
+                                        </button> 
+                                        <form style="display: inline" action="<?= url('admin/user/delete/').$user['id_user'] ?>" method="post">
+                                            <button type="button" class="btn btn-danger delete-user" data-id="<?= $user['id_user']; ?>">
+                                                <i class="fas fa-trash"></i>
+                                                <span class="d-none d-md-inline">Hapus</span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

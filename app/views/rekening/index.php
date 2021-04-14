@@ -28,48 +28,50 @@
     <div class="row">
     <div class="col">
         <div class="card">
-        <!-- Card header -->
-        <div class="card-header border-0">
-            <h3 class="mb-0">Daftar Rekening</h3>
-        </div>
-        <!-- Light table -->
-        <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-                <th width="2%">No</th>
-                <th>No Rekening</th>
-                <th>Saldo</th>
-                <th width="50%">Nasabah</th>
-                <th>Aksi</th>
-            </thead>
-            <tbody class="list">
-                <?php $i=0; foreach($rekening as $rek): $i++ ?>
-                    <tr>
-                        <td><?= $i ?></td>
-                        <td><?= $rek['no_rekening'] ?></td>
-                        <td><?= $rek['saldo'] ?></td>
-                        <td><?= $rek['nm_nasabah'] ?></td>
-                        <td>
-                            <button class="btn btn-success edit-rekening" data-norek="<?= $rek['no_rekening'] ?>">
-                                <i class="fas fa-edit"></i>
-                                <span class="d-none d-md-inline">
-                                    Edit
-                                </span>
-                            </button> 
-                            <form style="display: inline" action="<?= url('admin/rekening/delete/').$rek['no_rekening'] ?>" method="post">
-                                <button type="button" class="btn btn-danger delete-user">
-                                    <i class="fas fa-trash"></i>
-                                    <span class="d-none d-md-inline">
-                                    Hapus
-                                    </span>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-            </table>
-        </div>
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">Daftar Rekening</h3>
+            </div>
+            <div class="card-body mx--4">
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <th width="2%">No</th>
+                        <th>No Rekening</th>
+                        <th>Saldo</th>
+                        <th width="50%">Nasabah</th>
+                        <th>Aksi</th>
+                    </thead>
+                    <tbody class="list">
+                        <?php $i=0; foreach($rekening as $rek): $i++ ?>
+                            <tr>
+                                <td><?= $i ?></td>
+                                <td><?= $rek['no_rekening'] ?></td>
+                                <td><?= rupiah($rek['saldo']) ?></td>
+                                <td><?= $rek['nm_nasabah'] ?></td>
+                                <td>
+                                    <button class="btn btn-success edit-rekening" data-norek="<?= $rek['no_rekening'] ?>">
+                                        <i class="fas fa-edit"></i>
+                                        <span class="d-none d-md-inline">
+                                            Edit
+                                        </span>
+                                    </button> 
+                                    <form style="display: inline" action="<?= url('admin/rekening/delete/').$rek['no_rekening'] ?>" method="post">
+                                        <button type="button" class="btn btn-danger delete-user">
+                                            <i class="fas fa-trash"></i>
+                                            <span class="d-none d-md-inline">
+                                            Hapus
+                                            </span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

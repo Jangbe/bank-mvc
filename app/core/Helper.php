@@ -19,6 +19,12 @@ function redirect($url){
     exit;
 }
 
+function back()
+{
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
+
 function abort($code = '404'){
     require_once __DIR__.'/../views/error/'.$code.'.php';
     exit;
@@ -47,4 +53,21 @@ function user($index = ''){
     }else{
         return [];
     }
+}
+
+function level($index)
+{
+    if(isset($_SESSION['nasabah'])){
+        $index = $index=='id'?'id_nasabah':$index;
+        $index = $index=='nama'?'nm_nasabah':$index;
+        return $_SESSION['nasabah'][$index];
+    }else{
+        $index = $index=='id'?'id_pegawai':$index;
+        $index = $index=='nama'?'nm_pegawai':$index;
+        return $_SESSION['pegawai'][$index];
+    }
+}
+
+function rupiah($number){
+    return "Rp. ".number_format($number, 0, ',', '.').",00";
 }

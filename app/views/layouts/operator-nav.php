@@ -16,3 +16,9 @@
     <span class="nav-link-text">Rekening</span>
     </a>
 </li>
+<li class="nav-item">
+    <a class="nav-link" id="transaksi" href="<?= url('operator/transaksi') ?>">
+    <i class="fas fa-file-invoice-dollar text-red"></i>
+    <span class="nav-link-text">Transaksi</span>
+    </a>
+</li>

@@ -26,7 +26,7 @@ class OperatorModel{
                  ->binds($post)
                  ->execute();
         setFlash('pesan', 'Pegawai berhasil ditambahkan!');
-        redirect(user('level').'/operator');
+        back();
     }
 
     public function editOperator($post, $id)
@@ -41,7 +41,7 @@ class OperatorModel{
                                          WHERE id_pegawai=:id")->binds($post)->execute();
                                 
         setFlash('pesan', 'Pegawai Berhasil di Edit');
-        redirect(user('level').'/operator');
+        back();
     }
 
     public function destroy($id)
@@ -49,6 +49,6 @@ class OperatorModel{
         $this->db->query("DELETE FROM pegawai WHERE id_pegawai=:id")->bind('id', $id)->execute();
 
         setFlash('pesan', 'Pegawai berhasil dihapus.');
-        redirect(user('level').'/operator');
+        back();
     }
 }

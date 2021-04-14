@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Not pound</title>
+    <title>Error 404 - Page Not pound</title>
+    <!-- Favicon -->
+    <link rel="icon" href="<?= url() ?>assets/img/brand/favicon.png" type="image/png">    
     <link rel="stylesheet" href="<?= url() ?>/assets/css/Error404.css" type="text/css">
 </head>
 <body>
@@ -37,7 +39,7 @@
   
 </div>
 <h1 class="errorcode">ERROR 404</h1>
-<div class="errortext"> Data not found. <a id="button" href="#" onclick="window.history.back()">Turn back now!</a></div>
+<div class="errortext"> Page not found. <a id="button" href="#" onclick="window.history.back()">Turn back now!</a></div>
 
 </body>
 </html>
