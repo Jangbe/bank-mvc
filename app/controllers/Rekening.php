@@ -42,8 +42,7 @@ class Rekening extends Controller{
         if(!empty($_POST)){
             if($_POST['norek'] == '' || 
                 $_POST['pin_old'] == '' || 
-                $_POST['pin_new'] == '' || 
-                $_POST['id_nasabah'] == ''){
+                $_POST['pin_new'] == ''){
                 setFlash('pesan', 'Data Tidak Lengkap', 'danger');
                 back();
             }
