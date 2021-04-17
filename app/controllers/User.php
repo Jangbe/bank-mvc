@@ -36,13 +36,10 @@ class User extends Controller{
     public function create()
     {
         if(!empty($_POST)){
-            foreach($_POST as $index => $post){
-                if($index == 'level' && $post != 'admin'){
-                    if(trim($post) == '' || !isset($_POST['jk'])){
-                        setFlash('pesan', 'Data tidak lengkap', 'danger');
-                        redirect(user('level').'/user');
-                    }
-                }
+            if(trim($_POST['username']) == '' || 
+               trim($_POST['password']) == ''){
+                setFlash('pesan', 'Data tidak lengkap', 'danger');
+                redirect(user('level').'/user');
             }
             $this->model('UserModel')->createUser($_POST);
         }else{

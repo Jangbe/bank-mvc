@@ -3,7 +3,7 @@
     <div class="container-fluid d-flex align-items-center">
     <div class="row">
         <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Halo <?= level('nama') ?></h1>
+        <h1 class="display-2 text-white">Halo <?= level('nama') ?? ucwords(user('username')) ?></h1>
         <p class="text-white mt-0 mb-4">Ini adalah halaman profil Anda. Anda dapat melihat kemajuan yang telah Anda buat dengan pekerjaan Anda dan mengelola proyek atau tugas yang diberikan</p>
         </div>
     </div>
@@ -19,7 +19,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="<?= url('assets/img/theme/').(level('jk')=='L'?'team-1.jpg':'team-4.jpg') ?>" class="rounded-circle">
+                    <img src="<?= url('assets/img/theme/').(level('jk')=='P'?'team-4.jpg':'team-1.jpg') ?>" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -27,7 +27,7 @@
             <div class="card-body pt-6">
               <div class="text-center">
                 <h5 class="h3">
-                  <?= level('nama') ?>
+                  <?= level('nama') ?? ucwords(user('username')) ?>
                 </h5>
                 <div class="h5 font-weight-300">
                   <i class="ni ni-location_pin mr-2"></i><?= level('email') ?>
@@ -56,6 +56,7 @@
                 <h6 class="heading-small text-muted mb-4">Informasi User</h6>
                 <div class="pl-lg-4">
                   <div class="row">
+                    <?php if(user('level')!='admin') : ?>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Username</label>
@@ -68,8 +69,6 @@
                         <input type="email" name="email" id="input-email" class="form-control" placeholder="jesse@example.com" value="<?= level('email') ?>">
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Nama Awal</label>
@@ -101,6 +100,21 @@
                         </div>
                       </div>
                     </div>
+                    <?php else: ?>
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Username</label>
+                        <div class="row">
+                          <div class="col-8">
+                            <input type="text" name="username" id="input-username" class="form-control" placeholder="Username" value="<?= user('username') ?>">
+                          </div>
+                          <div class="col-4">
+                            <button class="btn btn-primary col">Simpan</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <?php endif ?>
                   </div>
                 </div>
                 <hr class="my-4" />

@@ -28,13 +28,13 @@
                     <hr>
                     <div class="form-group">
                         <div class="form-check">
-                            <input type="checkbox" name="all" id="all" checked="true" class="form-check-input">
+                            <input type="checkbox" name="all" id="all" checked="true" class="form-check-input all">
                             <label for="all" class="form-check-label">Pilih Semua Transaksi</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="text-muted" id="pilih-tanggal">Pilih Tanggal Generate Laporan</label>
-                        <input disabled type="text" id="date-detail" name="dates" class="form-control">
+                        <input disabled type="text" id="date-detail" name="dates" class="form-control date-detail">
                     </div>
                     <?php endif ?>
                 </div>

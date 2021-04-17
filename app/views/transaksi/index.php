@@ -56,11 +56,11 @@
     document.addEventListener('DOMContentLoaded',function(){
         function isDisabled(check){
             if(check){
-                $('#pilih-tanggal').addClass('text-muted');
-                $('#date-detail').attr('disabled', true);
+                $('.pilih-tanggal').addClass('text-muted');
+                $('.date-detail').attr('disabled', true);
             }else{
-                $('#pilih-tanggal').removeClass('text-muted');
-                $('#date-detail').attr('disabled', false);
+                $('.pilih-tanggal').removeClass('text-muted');
+                $('.date-detail').attr('disabled', false);
             }
         }
         var check = true;
@@ -151,15 +151,17 @@
             $('#detailTransaksi').modal('show');
         });
 
-        $('#all').change(function(){
+        $('.all').change(function(){
             check = $(this).is(':checked');
             isDisabled(check);
-            table.draw();
+            if(table){
+                table.draw();
+            }
         })
 
         $('#date-detail').change(function(){
             table.draw();
         });
-        
+
     });
 </script>

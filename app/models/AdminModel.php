@@ -24,7 +24,7 @@ class AdminModel{
         $query = "SELECT * FROM transaksi JOIN rekening ON transaksi.no_rekening=rekening.no_rekening 
                                           JOIN nasabah ON rekening.id_nasabah=nasabah.id_nasabah ";
         if($is_all){
-            if(isset($post['id_nasabah'])){
+            if(isset($post['id_nasabah']) && $post['id_nasabah'] != 'semua'){
                 $query .= " WHERE nasabah.id_nasabah=:id_nasabah";
             }
             $data['transaksi'] = $this->db->query($query);
@@ -52,7 +52,7 @@ class AdminModel{
         }else{
             $data['transaksi'] = $data['transaksi']->bind('awal', $dates[0])->get();
         }
-        if(isset($post['id_nasabah'])){
+        if(isset($post['id_nasabah']) && $post['id_nasabah'] != 'semua'){
             $data['nasabah'] = $this->db->query("SELECT * FROM nasabah 
                                                  WHERE id_nasabah=:id_nasabah")
                                         ->bind('id_nasabah', $post['id_nasabah'])->first();

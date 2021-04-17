@@ -11,14 +11,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="date">Pilih Tanggal</label>
-                        <input type="text" id="date" name="dates" class="form-control ">
+                        <label for="id_nasabah">Pilih Nasabah</label>
+                        <select name="id_nasabah" id="id_nasabah" class="custom-select select2" required>
+                            <option value=""></option>
+                            <option value="semua">Semua</option>
+                            <?php foreach($nasabah as $nsbh) : ?>
+                            <option value="<?= $nsbh['id_nasabah'] ?>"><?= $nsbh['nm_nasabah'] ?></option>
+                            <?php endforeach ?>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="nasabah">Pilih Nasabah</label>
-                        <select name="nasabah" id="nasabah" class="custom-select">
-                            <option value="semua">Semua</option>
-                        </select>
+                        <div class="form-check">
+                            <input type="checkbox" name="all" id="all1" checked="true" class="form-check-input all">
+                            <label for="all1" class="form-check-label">Pilih Semua Transaksi</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Pilih Tanggal</label>
+                        <input type="text" id="date" name="dates" class="form-control date-detail">
                     </div>
                 </div>
                 <div class="modal-footer">

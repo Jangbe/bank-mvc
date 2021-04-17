@@ -36,13 +36,21 @@ class Auth extends Controller{
     public function edit()
     {
         if(!empty($_POST)){
-            if($_POST['username'] == '' || 
+            if(user('level')!='admin'){
+
+                if($_POST['username'] == '' || 
                 $_POST['first_name'] == '' || 
                 $_POST['no_hp'] == '' || 
                 $_POST['email'] == '' ||
                 $_POST['alamat'] == ''){
-                setFlash('pesan', 'Data Tidak Lengkap', 'danger');
-                redirect('operator/nasabah');
+                    setFlash('pesan', 'Data Tidak Lengkap', 'danger');
+                    back();
+                }
+            }else{
+                if($_POST['username']==''){
+                    setFlash('pesan', 'Data Tidak Lengkap', 'danger');
+                    back();
+                }
             }
             $this->model('AuthModel')->edit($_POST);
         }else{

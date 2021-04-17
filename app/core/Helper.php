@@ -61,7 +61,7 @@ function level($index)
         $index = $index=='id'?'id_nasabah':$index;
         $index = $index=='nama'?'nm_nasabah':$index;
         return $_SESSION['nasabah'][$index];
-    }else{
+    }else if(isset($_SESSION['pegawai'])){
         $index = $index=='id'?'id_pegawai':$index;
         $index = $index=='nama'?'nm_pegawai':$index;
         return $_SESSION['pegawai'][$index];

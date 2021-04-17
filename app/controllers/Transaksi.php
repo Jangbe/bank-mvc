@@ -4,10 +4,10 @@ class Transaksi extends Controller{
     public function index()
     {
         $transaksi = $this->model('TransaksiModel')->getAllTransaksi();
-        // var_dump($transaksi);die;
+        $nasabah = $this->model('NasabahModel')->getAllNasabah();
         $rekening = $this->model('RekeningModel')->getAllRekening();
         $this->view('layouts/header');
-        $this->view('transaksi/index', compact('transaksi','rekening'));
+        $this->view('transaksi/index', compact('transaksi','rekening','nasabah'));
         $this->view('layouts/footer');
     }
 

@@ -50,7 +50,6 @@
                         include __DIR__.'/nasabah-nav.php';
                         break;
                 }
-                if(user('level')!='admin'):
             ?>
             <li class="nav-item">
                 <a class="nav-link" id="profile" href="<?= url('profile') ?>">
@@ -58,7 +57,6 @@
                 <span class="nav-link-text">Profile</span>
                 </a>
             </li>
-            <?php endif ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?= url('auth/logout') ?>">
                 <i class="ni ni-user-run text-green"></i>

@@ -85,17 +85,18 @@
             });
         });
 
-        if($('#level').val() == 'admin'){
-            $('#tingkat').hide();
-        }
+        $('#tingkat').hide();
+        // if($('#level').val() == 'admin'){
+        //     $('#tingkat').hide();
+        // }
 
-        $('#level').on('change', function(){
-            if($(this).val() == 'admin'){
-                $('#tingkat').fadeOut();
-            }else{
-                $('#tingkat').fadeIn();
-            }
-        });
+        // $('#level').on('change', function(){
+        //     if($(this).val() == 'admin'){
+        //         $('#tingkat').fadeOut();
+        //     }else{
+        //         $('#tingkat').fadeIn();
+        //     }
+        // });
 
         $('#buatUser').click(function(){
             $('#username').val('');
