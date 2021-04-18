@@ -41,9 +41,12 @@
                             <?php $i=0; foreach($transaksi as $tr): $i++ ?>
                                 <tr>
                                     <td><?= $i ?></td>
-                                    <td class="text-danger"><?= $tr['no_rekening'] ?></td>
+                                    <td class="text-danger"><?= $tr['no_ku'] ?></td>
                                     <td class="text-center font-weight-bold"><?= rupiah($tr['nominal']) ?></td>
-                                    <td class="text-success"><?= $tr['jns_transaksi']=='tf'?'Transfer':ucwords($tr['jns_transaksi']) ?></td>
+                                    <td class="text-success">
+                                        <?= $tr['jns_transaksi']=='tf'?'Transfer':ucwords($tr['jns_transaksi']) ?>
+                                        <?= $tr['jns_transaksi']!='tf'?:'<button class="btn btn-sm btn-info ml-2" onclick="detail_transaksi('.$tr['id_transaksi'].')">Detail</button' ?>
+                                    </td>
                                     <td class="text-warning"><?= date('d M Y',strtotime($tr['waktu'])) ?></td>
                                 </tr>
                             <?php endforeach; ?>
@@ -107,8 +110,41 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="detailTransfer" tabindex="-1" role="dialog" aria-labelledby="detailTransferLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailTransferLabel">Detail Transfer <?= level('nama') ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <script>
+        function detail_transaksi(id_transaksi){
+            $.ajax({
+                url:"<?= url('ajax_transfer') ?>",
+                method: 'post',
+                data: {id_transaksi},
+                success: function(result){
+                    console.log(result);
+                    result = JSON.parse(result);
+                    $('#detailTransfer').modal('show');
+                }
+            });
+        }
         document.addEventListener('DOMContentLoaded', function(){
             $('#transfer').addClass('active');
 

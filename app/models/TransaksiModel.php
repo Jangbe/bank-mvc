@@ -78,4 +78,20 @@ class TransaksiModel{
         setFlash('pesan', 'Transaksi berhasil dibuat.');
         back();
     }
+
+    public function getTransfer($post)
+    {
+        $id_nasabah = level('id');
+        $id_transaksi = $post['id_transaksi'];
+        return $this->db->query("SELECT nasabah.nm_nasabah as dari,
+                                        transfer.no_rekening as kepada,
+                                        transfer.jns_pembayaran as jns_pembayaran,
+                                        transfer.keterangan as keterangan,
+                                        transaksi.waktu as waktu
+                                 FROM transfer
+                                 JOIN transaksi ON transaksi.id_transaksi=transfer.id_transaksi
+                                 JOIN rekening ON transaksi.no_rekening=rekening.no_rekening
+                                 JOIN nasabah ON rekening.id_nasabah=nasabah.id_nasabah
+                                 WHERE transfer.id_transaksi='$id_transaksi'")->first();
+    }
 }

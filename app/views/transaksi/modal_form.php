@@ -33,7 +33,12 @@
                     </div>
                     <div class="form-group">
                         <label for="nominal">Nominal</label>
-                        <input type="text" class="form-control pin" name="nominal" id="nominal">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span for="nominal" class="input-group-text">Rp. </span>
+                            </div>
+                            <input type="text" class="form-control pin" name="nominal" id="nominal">
+                        </div>
                     </div>
                     <div id="tf">
                         <div class="form-group">

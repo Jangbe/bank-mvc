@@ -16,12 +16,12 @@ class UserModel{
 
     public function getAllUsersNasabah()
     {
-        return $this->db->query('SELECT * FROM users WHERE level = "nasabah" ')->get();
+        return $this->db->query('SELECT * FROM users WHERE level = "nasabah" AND id_user NOT IN(SELECT id_user FROM nasabah)')->get();
     }
 
     public function getAllUsersPegawai()
     {
-        return $this->db->query('SELECT * FROM users WHERE level = "operator" ')->get();
+        return $this->db->query('SELECT * FROM users WHERE level = "operator" AND id_user NOT IN(SELECT id_user FROM pegawai)')->get();
     }
 
 

@@ -32,4 +32,13 @@ class Transaksi extends Controller{
             abort(403);
         }
     }
+
+    public function getTransfer()
+    {
+        if(!empty($_POST)){
+            echo json_encode($this->model('TransaksiModel')->getTransfer($_POST));
+        }else{
+            abort(403);
+        }
+    }
 }

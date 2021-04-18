@@ -56,9 +56,17 @@ class NasabahModel{
     {
         $id_user = user('id_user');
         $nasabah = $this->db->query("SELECT * FROM nasabah WHERE id_user='$id_user'")->first();
-        return $this->db->query("SELECT * FROM transaksi
+        $rekening = $this->db->query("SELECT no_rekening FROM rekening WHERE id_nasabah='$nasabah[id_nasabah]'")->get();
+        $rek = $rekening[0]['no_rekening'];
+        unset($rekening[0]);
+        foreach ($rekening as $value) {
+            $rek .= ', '.$value['no_rekening'];
+        }
+        // var_dump($rek);die;
+        return $this->db->query("SELECT *, transaksi.no_rekening as no_ku FROM transaksi
                                  JOIN rekening ON transaksi.no_rekening=rekening.no_rekening
                                  JOIN nasabah ON rekening.id_nasabah=nasabah.id_nasabah
-                                 WHERE nasabah.id_nasabah='$nasabah[id_nasabah]' ORDER BY transaksi.id_transaksi DESC")->get();
+                                 LEFT JOIN transfer ON transaksi.id_transaksi=transfer.id_transaksi
+                                 WHERE nasabah.id_nasabah='$nasabah[id_nasabah]' OR transfer.no_rekening IN($rek) ORDER BY transaksi.id_transaksi DESC")->get();
     }
 }
