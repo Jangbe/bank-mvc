@@ -122,17 +122,9 @@
                 data: {id_user: id_user},
                 success: function(result){
                     result = JSON.parse(result);
-                    console.log(result);
                     $('#username').val(result[0].username);
                     $('#pass').parent().hide();
                     $('#level').val(result[0].level);
-
-                    if(result[0].level == 'admin') $('#tingkat').fadeOut(1000); else $('#tingkat').fadeIn(1000);
-                    $('#nama').val(result[1].nm_nasabah ?? result[1].nm_pegawai ?? '');
-                    $('#jk').val(result[1].jk ?? 'L');
-                    $('#no_hp').val(result[1].no_hp ?? '');
-                    $('#email').val(result[1].email ?? '');
-                    $('#alamat').val(result[1].alamat ?? '');
 
                     $('#modalForm').attr('action', "<?= url($_SESSION['user']['level'].'/user/edit/') ?>"+result[0].id_user);
                     $('#createUserLabel').text('Edit User '+result[0].username).css('textTransform', 'capitalize');
